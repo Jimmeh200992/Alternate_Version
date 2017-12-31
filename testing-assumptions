@@ -1,0 +1,7 @@
+Assumptions for testing purposes
+
+PIN entered is 4 digits long
+Advance booking code is 5 characters, preceded by ‘*’
+Registration plate is captured by camera at entry barrier
+User has sufficient funds to pay for coin (Issues with this are out of scope for design, as they are part of payment framework)
+Assistance is provided verbally through intercoms at pay station and barriers.
