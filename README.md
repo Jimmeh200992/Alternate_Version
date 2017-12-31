@@ -1,0 +1,29 @@
+# Alternate_Version
+Reworked version of existing code from ItRaSM
+
+
+Secure car park to do:
+
+Rename ticket to chipcoin, comment liberally
+
+Validation on PIN entry
+
+Timestamps on chip coins
+
+Emergency services override - Add button, button disables all barrier arrival and ticket buttons.  Message displayed on entrance and exit to announce issue.
+
+Fault panel - Set of buttons for different faults, split into trigger and resolution buttons
+-------
+Coin invalid - Simulates coin not being read, or being read incorrectly.  Requests reg plate and PIN to override and permit payment.  Add bool for 'faulty', which prevents GetHashCode form reading coin.
+-------
+Coin lost - Simulates coin not being read, or being read incorrectly.  Requests reg plate and PIN to override and permit payment.  Add bool for 'faulty', which prevents GetHashCode form reading coin.
+-------
+PIN failure - Simulates PIN being scrambled and not being read.  Requests coin entry and reg plate confirmation and permits payment.  Forcibly changes PIN stored against chipcoin.
+-------
+Pay machine faulty - Simulates problem with paystation not permitting payment.  Enables manual overrides to raise exit barrier.  Changes full sign to show full, sets spaces available to 0.  Adds bool for pay machine button override.
+-------
+Barrier faulty - Simulates issue with either barrier not functioning.  Disables barrier.  Permits override simulating technician manually raising barrier.
+-------
+Advance booking failure - Simulates issue with advance booking.  Provides error when entering code.  Override sends message to driver with confirmation code.  This then dispenses coin.
+
+Advance booking - Separate panel to permit space reservation with prepayment.  Requires phone number entering.  Provides code, requests PIN, coin created on system, but not dispensed.  When code entered at barrier at PIN entry screen, requests PIN entry, then dispenses existing coin.  This would also cover company pre-booking.
