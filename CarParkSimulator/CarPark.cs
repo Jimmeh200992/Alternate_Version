@@ -110,7 +110,7 @@ namespace CarParkSimulator
             return currentSpaces;
         }
 
-        public void parkCar(int ChipCoinCode)
+        public int parkCar(int ChipCoinCode)
         {
             bool parked = false;
             while (parked == false)
@@ -128,11 +128,13 @@ namespace CarParkSimulator
                                 {
                                     carParkLayout[floor, i] = ChipCoinCode;
                                     parked = true;
+                                    return floor;
                                 }
                             }
                         }
                     }
             }
+            return carParkFloors;
         }
 
         public int selectFloor()

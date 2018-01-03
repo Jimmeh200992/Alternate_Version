@@ -101,7 +101,7 @@ namespace CarParkSimulator
             {
                 if (Convert.ToInt32(ChipCoinCode) == ChipCoin.GetHashCode())
                     {
-                        carPark.parkCar(Convert.ToInt32(ChipCoinCode));
+                        ChipCoin.SetCurrentFloor(carPark.parkCar(Convert.ToInt32(ChipCoinCode)));
                         break;
                     }
             }
@@ -173,7 +173,7 @@ namespace CarParkSimulator
             string ChipCoinList = "";
             foreach (ChipCoin ChipCoin in activeChipCoins.GetChipCoins())
             {
-                ChipCoinList = ChipCoinList + "#" + Convert.ToString(ChipCoin.GetHashCode()) + ": " + Convert.ToString(ChipCoin.IsPaid()) + ": \n";
+                ChipCoinList = ChipCoinList + "#" + Convert.ToString(ChipCoin.GetHashCode()) + ": " + Convert.ToString(ChipCoin.IsPaid()) + ": " + Convert.ToString(ChipCoin.GetCurrentFloor()) + ": " + ChipCoin.GetRegPlate() + "\n";
             }
             lstActiveChipCoins.Text = ChipCoinList;
         }

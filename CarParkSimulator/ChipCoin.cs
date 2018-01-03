@@ -11,6 +11,7 @@ namespace CarParkSimulator
         private bool paid;
         private int PIN = 99999999;  //default value used, made unreachable by standard entry
         private string regPlate = "";
+        private int floor = 0;
 
         //CONSTRUCTORS
         public ChipCoin()
@@ -46,6 +47,16 @@ namespace CarParkSimulator
         public void SetRegPlate(string regPlate)
         {
             this.regPlate = regPlate;
+        }
+
+        public int GetCurrentFloor()
+        {
+            return floor;
+        }
+
+        public void SetCurrentFloor(int floor)
+        {
+            this.floor = floor;
         }
     }
 }
