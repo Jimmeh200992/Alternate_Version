@@ -20,7 +20,7 @@ namespace CarParkSimulator
         public void AddTicket(int PIN)
         {
             tickets.Add(new Ticket());          //Creates a new ticket and adds to list.
-            SetTicketPIN(PIN);
+            SetTicketPIN(PIN);                  //Assigns PIN to newly created ticket
         }
 
         public List<Ticket> GetTickets()

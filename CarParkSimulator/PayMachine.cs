@@ -23,34 +23,32 @@ namespace CarParkSimulator
         //OPERATIONS
         public void PayForTicket(int ticketCode)
         {
-            if (tickets.GetTickets().Count() > 0)
+            if (tickets.GetTickets().Count() > 0)  //only valid when there are tickets in the system
             {
                 //Checks every active ticket
-                foreach (Ticket ticket in tickets.GetTickets())
+                foreach (Ticket ticket in tickets.GetTickets())  //checks against active tickets
                 {
                     //Checks if the Hashcodes match.
-                    if (ticketCode == ticket.GetHashCode())
+                    if (ticketCode == ticket.GetHashCode())  //compares hashcode
                     {
                         string PINEntry = Microsoft.VisualBasic.Interaction.InputBox("Please enter your secure parking PIN");
-                        int.TryParse(PINEntry, out int PIN);
-                        if (ticket.GetPIN() != PIN)
+                        int.TryParse(PINEntry, out int PIN);  //validates PIN entry as numeric
+                        if (ticket.GetPIN() != PIN) //checks against registered PIN
                         {
                             MessageBox.Show("Invalid PIN, please reinsert coin");
-                            break;
+                            break;  //breaks operation if PIN invalid
                         }
                         else
                         {
-                            //Removes that ticket from the list
-                            MessageBoxManager.OK = "Cash"; MessageBoxManager.Cancel = "Card"; MessageBoxManager.Register();
-
-                            //ask to select a payment, if cash is pressed set paid to true
+                            MessageBoxManager.OK = "Cash"; MessageBoxManager.Cancel = "Card"; MessageBoxManager.Register();  //Removes that ticket from the list
+                            
                             if (MessageBox.Show("Please select payment method. \n\nCard payments will be processed at the barrier.", "Payment type", MessageBoxButtons.OKCancel) == DialogResult.OK)
                             {
                                 ticket.SetPaid(true);
 
                             }
                             MessageBoxManager.Unregister();
-                            break;
+                            break;  //ask to select a payment, if cash is pressed, set paid to true, breaks loop
                         }
                     }
                 }

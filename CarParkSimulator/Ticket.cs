@@ -9,7 +9,7 @@ namespace CarParkSimulator
     {
         //ATTRIBUTES
         private bool paid;
-        private int PIN = 99999999;
+        private int PIN = 99999999;  //default value used, made unreachable by standard entry
 
         //CONSTRUCTORS
         public Ticket()

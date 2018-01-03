@@ -59,6 +59,8 @@ namespace CarParkSimulator
             btnCarArrivesAtExit.Visible = false;
             btnDriverEntersTicket.Visible = false;
             btnCarExitsCarPark.Visible = false;
+            btnParkCar.Visible = false;
+            btnCarLeavesSpace.Visible = false;
 
             UpdateDisplay();
         }
@@ -83,11 +85,28 @@ namespace CarParkSimulator
         {
             entrySensor.CarLeftSensor();                //Detects that the car has moved, changes spaces and signs accordingly
             btnCarEntersCarPark.Visible = false;        //Disables button clicked.
-            btnCarArrivesAtExit.Visible = true;         //Enables exit button.
             if (carPark.IsFull() == false)              //Only enables entry button if car park is not full.
             {
                 btnCarArrivesAtEntrance.Visible = true;
             }
+            btnParkCar.Visible = true;
+            UpdateDisplay();
+        }
+        
+        private void btnParkCar_Click(object sender, EventArgs e)
+        {
+            string ticketCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ticket HASH:  (This is a simulation of scanning the ticket code");
+            Convert.ToInt32(ticketCode);
+            foreach (Ticket ticket in activeTickets.GetTickets())
+            {
+                if (Convert.ToInt32(ticketCode) == ticket.GetHashCode())
+                    {
+                        carPark.parkCar(Convert.ToInt32(ticketCode));
+                        break;
+                    }
+            }
+            btnParkCar.Visible = false;
+            btnCarLeavesSpace.Visible = true;         //Enables exit button.
             UpdateDisplay();
         }
 
@@ -149,6 +168,7 @@ namespace CarParkSimulator
             lblExitBarrier.Text = Convert.ToString(exitBarrier.IsLifted());
             lblFullSign.Text = Convert.ToString(fullSign.IsLit());
             lblSpaces.Text = Convert.ToString(carPark.getCurrentSpaces());
+            lblSpacesByFloor.Text = carPark.getAllSpaces();
 
             string TicketList = "";
             foreach (Ticket ticket in activeTickets.GetTickets())
@@ -163,6 +183,23 @@ namespace CarParkSimulator
         {
             string ticketCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ticket HASH:  (This is a simulation of scanning the ticket code");
             payMachine.PayForTicket(Convert.ToInt32(ticketCode));
+            UpdateDisplay();
+        }
+
+        private void btnCarLeavesSpace_Click(object sender, EventArgs e)
+        {
+            string ticketCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ticket HASH:  (This is a simulation of scanning the ticket code");
+            Convert.ToInt32(ticketCode);
+            foreach (Ticket ticket in activeTickets.GetTickets())
+            {
+                if (Convert.ToInt32(ticketCode) == ticket.GetHashCode())
+                {
+                    carPark.carLeavesParkingSpace(Convert.ToInt32(ticketCode));
+                    break;
+                }
+            }
+            btnCarLeavesSpace.Visible = false;
+            btnCarArrivesAtExit.Visible = true;         //Enables exit button.
             UpdateDisplay();
         }
     }

@@ -31,10 +31,10 @@ namespace CarParkSimulator
 
         public void PrintTicket()
         {
-            string PINEntry = Microsoft.VisualBasic.Interaction.InputBox("Please enter a PIN for your secure parking");
-            int.TryParse(PINEntry, out int PIN);
+            string PINEntry = Microsoft.VisualBasic.Interaction.InputBox("Please enter a PIN for your secure parking");  //requests PIN entry
+            int.TryParse(PINEntry, out int PIN);  //parses string to int
             message = "Thank you, enjoy your stay.";
-            tickets.AddTicket(PIN);
+            tickets.AddTicket(PIN);  //creates ticket, passing PIN
             carPark.TicketDispensed();
         }
 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnParkCar = new System.Windows.Forms.Button();
             this.lblTicketMachine = new System.Windows.Forms.Label();
             this.btnCarEntersCarPark = new System.Windows.Forms.Button();
             this.btnDriverPressesForTicket = new System.Windows.Forms.Button();
@@ -41,6 +42,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblSpacesByFloor = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lstActiveTickets = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -59,6 +62,7 @@
             this.lblFullSign = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnPayForTicket = new System.Windows.Forms.Button();
+            this.btnCarLeavesSpace = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -70,16 +74,28 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnParkCar);
             this.groupBox1.Controls.Add(this.lblTicketMachine);
             this.groupBox1.Controls.Add(this.btnCarEntersCarPark);
             this.groupBox1.Controls.Add(this.btnDriverPressesForTicket);
             this.groupBox1.Controls.Add(this.btnCarArrivesAtEntrance);
             this.groupBox1.Location = new System.Drawing.Point(12, 148);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 238);
+            this.groupBox1.Size = new System.Drawing.Size(200, 299);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Entrance simulator";
+            // 
+            // btnParkCar
+            // 
+            this.btnParkCar.Location = new System.Drawing.Point(6, 237);
+            this.btnParkCar.Name = "btnParkCar";
+            this.btnParkCar.Size = new System.Drawing.Size(188, 54);
+            this.btnParkCar.TabIndex = 6;
+            this.btnParkCar.Text = "Car is parked";
+            this.btnParkCar.UseVisualStyleBackColor = true;
+            this.btnParkCar.Visible = false;
+            this.btnParkCar.Click += new System.EventHandler(this.btnParkCar_Click);
             // 
             // lblTicketMachine
             // 
@@ -127,13 +143,14 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnCarLeavesSpace);
             this.groupBox2.Controls.Add(this.lblTicketValidator);
             this.groupBox2.Controls.Add(this.btnCarExitsCarPark);
             this.groupBox2.Controls.Add(this.btnDriverEntersTicket);
             this.groupBox2.Controls.Add(this.btnCarArrivesAtExit);
             this.groupBox2.Location = new System.Drawing.Point(226, 148);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 238);
+            this.groupBox2.Size = new System.Drawing.Size(200, 299);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Exit simulator";
@@ -151,7 +168,7 @@
             // 
             // btnCarExitsCarPark
             // 
-            this.btnCarExitsCarPark.Location = new System.Drawing.Point(6, 177);
+            this.btnCarExitsCarPark.Location = new System.Drawing.Point(6, 236);
             this.btnCarExitsCarPark.Name = "btnCarExitsCarPark";
             this.btnCarExitsCarPark.Size = new System.Drawing.Size(188, 54);
             this.btnCarExitsCarPark.TabIndex = 2;
@@ -162,7 +179,7 @@
             // 
             // btnDriverEntersTicket
             // 
-            this.btnDriverEntersTicket.Location = new System.Drawing.Point(6, 117);
+            this.btnDriverEntersTicket.Location = new System.Drawing.Point(6, 176);
             this.btnDriverEntersTicket.Name = "btnDriverEntersTicket";
             this.btnDriverEntersTicket.Size = new System.Drawing.Size(188, 54);
             this.btnDriverEntersTicket.TabIndex = 1;
@@ -173,7 +190,7 @@
             // 
             // btnCarArrivesAtExit
             // 
-            this.btnCarArrivesAtExit.Location = new System.Drawing.Point(6, 57);
+            this.btnCarArrivesAtExit.Location = new System.Drawing.Point(6, 116);
             this.btnCarArrivesAtExit.Name = "btnCarArrivesAtExit";
             this.btnCarArrivesAtExit.Size = new System.Drawing.Size(188, 54);
             this.btnCarArrivesAtExit.TabIndex = 0;
@@ -204,6 +221,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.lblSpacesByFloor);
             this.groupBox3.Controls.Add(this.groupBox6);
             this.groupBox3.Controls.Add(this.groupBox5);
             this.groupBox3.Controls.Add(this.groupBox4);
@@ -213,10 +232,28 @@
             this.groupBox3.Controls.Add(this.lblFullSign);
             this.groupBox3.Location = new System.Drawing.Point(440, 148);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(328, 238);
+            this.groupBox3.Size = new System.Drawing.Size(328, 356);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Internal data";
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(11, 237);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 54);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Spaces by floor";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSpacesByFloor
+            // 
+            this.lblSpacesByFloor.BackColor = System.Drawing.Color.White;
+            this.lblSpacesByFloor.Location = new System.Drawing.Point(71, 237);
+            this.lblSpacesByFloor.Name = "lblSpacesByFloor";
+            this.lblSpacesByFloor.Size = new System.Drawing.Size(70, 54);
+            this.lblSpacesByFloor.TabIndex = 9;
+            this.lblSpacesByFloor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox6
             // 
@@ -391,11 +428,22 @@
             this.btnPayForTicket.UseVisualStyleBackColor = true;
             this.btnPayForTicket.Click += new System.EventHandler(this.btnPayForTicket_Click);
             // 
+            // btnCarLeavesSpace
+            // 
+            this.btnCarLeavesSpace.Location = new System.Drawing.Point(6, 57);
+            this.btnCarLeavesSpace.Name = "btnCarLeavesSpace";
+            this.btnCarLeavesSpace.Size = new System.Drawing.Size(188, 54);
+            this.btnCarLeavesSpace.TabIndex = 7;
+            this.btnCarLeavesSpace.Text = "Car leaves space";
+            this.btnCarLeavesSpace.UseVisualStyleBackColor = true;
+            this.btnCarLeavesSpace.Visible = false;
+            this.btnCarLeavesSpace.Click += new System.EventHandler(this.btnCarLeavesSpace_Click);
+            // 
             // SimulatorInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 399);
+            this.ClientSize = new System.Drawing.Size(783, 532);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnReset);
@@ -454,6 +502,10 @@
         private System.Windows.Forms.Label lstActiveTickets;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button btnPayForTicket;
+        private System.Windows.Forms.Button btnParkCar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSpacesByFloor;
+        private System.Windows.Forms.Button btnCarLeavesSpace;
     }
 }
 

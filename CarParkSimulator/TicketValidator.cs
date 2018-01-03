@@ -32,25 +32,25 @@ namespace CarParkSimulator
         public TicketPaid TicketEntered(int ticketCode)
         {
 
-            foreach (Ticket ticket in tickets.GetTickets())
+            foreach (Ticket ticket in tickets.GetTickets())  //loops through all active tickets
             {
-                if (ticket.GetHashCode() == ticketCode)
+                if (ticket.GetHashCode() == ticketCode)  //checks inputted hashcode against ticket hashcodes
                 {
-                    if (ticket.IsPaid() == true)
+                    if (ticket.IsPaid() == true)  //on success, checks against whether ticket is paid
                     {
                         message = "Thank you, drive safely.";
                         tickets.RemoveTicket(ticketCode);
                         carPark.TicketValidated();
-                        return TicketPaid.TICKET_REMOVED;
+                        return TicketPaid.TICKET_REMOVED;  //presents message and removes ticket if ticket already paid
                     }
-                    else
+                    else //otherwise, requests PIN entry to authorise payment
                     {
                         string PINEntry = Microsoft.VisualBasic.Interaction.InputBox("Please enter your secure parking PIN");
                         int.TryParse(PINEntry, out int PIN);
                         if (ticket.GetPIN() != PIN)
                         {
                             message = "Invalid PIN, please reinsert your ticket";
-                            return TicketPaid.NOT_VALID;
+                            return TicketPaid.NOT_VALID;  //if PIN incorrect, returns system to point where car due to arrive at barrier
                         }
                         else
                         {
@@ -61,14 +61,14 @@ namespace CarParkSimulator
                                 tickets.RemoveTicket(ticketCode);
                                 carPark.TicketValidated();
                                 MessageBoxManager.Unregister();
-                                return TicketPaid.TICKET_REMOVED;
+                                return TicketPaid.TICKET_REMOVED;  //otherwise requests payment
                             }
 
                             else
                             {
                                 message = "Ticket has not been paid.";
                                 MessageBoxManager.Unregister();
-                                return TicketPaid.NOT_PAID;
+                                return TicketPaid.NOT_PAID;  //if ticket unpaid, no change, car needs to approach
                             }
                         }
                     }
@@ -92,7 +92,7 @@ namespace CarParkSimulator
     }
 }
 
-enum TicketPaid
+enum TicketPaid //Creates common references within namespace
 {
     TICKET_REMOVED,
     NOT_PAID,
