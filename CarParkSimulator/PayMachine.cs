@@ -11,40 +11,40 @@ namespace CarParkSimulator
     class PayMachine
     {
         //ATTRIBUTES
-        private ActiveTickets tickets;
+        private ActiveChipCoins ChipCoins;
         private CarPark carPark;
 
         //CONSTRUCTOR
-        public PayMachine(ActiveTickets tickets)
+        public PayMachine(ActiveChipCoins ChipCoins)
         {
-            this.tickets = tickets;
+            this.ChipCoins = ChipCoins;
         }
 
         //OPERATIONS
-        public void PayForTicket(int ticketCode)
+        public void PayForChipCoin(int ChipCoinCode)
         {
-            if (tickets.GetTickets().Count() > 0)  //only valid when there are tickets in the system
+            if (ChipCoins.GetChipCoins().Count() > 0)  //only valid when there are ChipCoins in the system
             {
-                //Checks every active ticket
-                foreach (Ticket ticket in tickets.GetTickets())  //checks against active tickets
+                //Checks every active ChipCoin
+                foreach (ChipCoin ChipCoin in ChipCoins.GetChipCoins())  //checks against active ChipCoins
                 {
                     //Checks if the Hashcodes match.
-                    if (ticketCode == ticket.GetHashCode())  //compares hashcode
+                    if (ChipCoinCode == ChipCoin.GetHashCode())  //compares hashcode
                     {
                         string PINEntry = Microsoft.VisualBasic.Interaction.InputBox("Please enter your secure parking PIN");
                         int.TryParse(PINEntry, out int PIN);  //validates PIN entry as numeric
-                        if (ticket.GetPIN() != PIN) //checks against registered PIN
+                        if (ChipCoin.GetPIN() != PIN) //checks against registered PIN
                         {
                             MessageBox.Show("Invalid PIN, please reinsert coin");
                             break;  //breaks operation if PIN invalid
                         }
                         else
                         {
-                            MessageBoxManager.OK = "Cash"; MessageBoxManager.Cancel = "Card"; MessageBoxManager.Register();  //Removes that ticket from the list
+                            MessageBoxManager.OK = "Cash"; MessageBoxManager.Cancel = "Card"; MessageBoxManager.Register();  //Removes that ChipCoin from the list
                             
                             if (MessageBox.Show("Please select payment method. \n\nCard payments will be processed at the barrier.", "Payment type", MessageBoxButtons.OKCancel) == DialogResult.OK)
                             {
-                                ticket.SetPaid(true);
+                                ChipCoin.SetPaid(true);
 
                             }
                             MessageBoxManager.Unregister();

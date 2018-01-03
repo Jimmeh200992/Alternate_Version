@@ -6,17 +6,17 @@ using Microsoft.VisualBasic;
 
 namespace CarParkSimulator
 {
-    class TicketMachine
+    class ChipCoinMachine
     {
         //ATTRIBUTES
         private string message;
-        private ActiveTickets tickets;
+        private ActiveChipCoins ChipCoins;
         private CarPark carPark;
 
         //CONSTRUCTOR
-        public TicketMachine(ActiveTickets tickets)
+        public ChipCoinMachine(ActiveChipCoins ChipCoins)
         {
-            this.tickets = tickets;
+            this.ChipCoins = ChipCoins;
         }
         //OPERATIONS
         public void AssignCarPark(CarPark carPark)  //Machine constructed after CarPark, thus needs an extra function.
@@ -26,16 +26,17 @@ namespace CarParkSimulator
 
         public void CarArrived()
         {
-            message = "Please press to get a ticket.";
+            message = "Please press to get a ChipCoin.";
         }
 
-        public void PrintTicket()
+        public void DispenseChipCoin()
         {
+            string regPlate = Microsoft.VisualBasic.Interaction.InputBox("Please enter vehicle registration plate (Simulates camera reading plate)");
             string PINEntry = Microsoft.VisualBasic.Interaction.InputBox("Please enter a PIN for your secure parking");  //requests PIN entry
             int.TryParse(PINEntry, out int PIN);  //parses string to int
             message = "Thank you, enjoy your stay.";
-            tickets.AddTicket(PIN);  //creates ticket, passing PIN
-            carPark.TicketDispensed();
+            ChipCoins.AddChipCoin(PIN, regPlate);  //creates ChipCoin, passing PIN and regPlate
+            carPark.ChipCoinDispensed();
         }
 
         public void ClearMessage()

@@ -5,14 +5,15 @@ using System.Text;
 
 namespace CarParkSimulator
 {
-    class Ticket
+    class ChipCoin
     {
         //ATTRIBUTES
         private bool paid;
         private int PIN = 99999999;  //default value used, made unreachable by standard entry
+        private string regPlate = "";
 
         //CONSTRUCTORS
-        public Ticket()
+        public ChipCoin()
         {
             paid = false;
         }
@@ -35,6 +36,16 @@ namespace CarParkSimulator
         public void SetPIN(int PIN)
         {
             this.PIN = PIN;
+        }
+
+        public string GetRegPlate()
+        {
+            return regPlate;
+        }
+
+        public void SetRegPlate(string regPlate)
+        {
+            this.regPlate = regPlate;
         }
     }
 }

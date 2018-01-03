@@ -6,17 +6,17 @@ using System.Windows.Forms;
 
 namespace CarParkSimulator
 {
-    class TicketValidator
+    class ChipCoinValidator
     {
         //ATTRIBUTES
         private string message;
-        private ActiveTickets tickets;
+        private ActiveChipCoins ChipCoins;
         private CarPark carPark;
 
         //CONSTRUCTOR
-        public TicketValidator(ActiveTickets tickets)
+        public ChipCoinValidator(ActiveChipCoins ChipCoins)
         {
-            this.tickets = tickets;
+            this.ChipCoins = ChipCoins;
         }
         //OPERATIONS
         public void AssignCarPark(CarPark carPark)   //Machine constructed after CarPark, thus needs an extra function.
@@ -26,31 +26,31 @@ namespace CarParkSimulator
 
         public void CarArrived()
         {
-            message = "Please insert your ticket.";
+            message = "Please insert your ChipCoin.";
         }
 
-        public TicketPaid TicketEntered(int ticketCode)
+        public ChipCoinPaid ChipCoinEntered(int ChipCoinCode)
         {
 
-            foreach (Ticket ticket in tickets.GetTickets())  //loops through all active tickets
+            foreach (ChipCoin ChipCoin in ChipCoins.GetChipCoins())  //loops through all active ChipCoins
             {
-                if (ticket.GetHashCode() == ticketCode)  //checks inputted hashcode against ticket hashcodes
+                if (ChipCoin.GetHashCode() == ChipCoinCode)  //checks inputted hashcode against ChipCoin hashcodes
                 {
-                    if (ticket.IsPaid() == true)  //on success, checks against whether ticket is paid
+                    if (ChipCoin.IsPaid() == true)  //on success, checks against whether ChipCoin is paid
                     {
                         message = "Thank you, drive safely.";
-                        tickets.RemoveTicket(ticketCode);
-                        carPark.TicketValidated();
-                        return TicketPaid.TICKET_REMOVED;  //presents message and removes ticket if ticket already paid
+                        ChipCoins.RemoveChipCoin(ChipCoinCode);
+                        carPark.ChipCoinValidated();
+                        return ChipCoinPaid.ChipCoin_REMOVED;  //presents message and removes ChipCoin if ChipCoin already paid
                     }
                     else //otherwise, requests PIN entry to authorise payment
                     {
                         string PINEntry = Microsoft.VisualBasic.Interaction.InputBox("Please enter your secure parking PIN");
                         int.TryParse(PINEntry, out int PIN);
-                        if (ticket.GetPIN() != PIN)
+                        if (ChipCoin.GetPIN() != PIN)
                         {
-                            message = "Invalid PIN, please reinsert your ticket";
-                            return TicketPaid.NOT_VALID;  //if PIN incorrect, returns system to point where car due to arrive at barrier
+                            message = "Invalid PIN, please reinsert your ChipCoin";
+                            return ChipCoinPaid.NOT_VALID;  //if PIN incorrect, returns system to point where car due to arrive at barrier
                         }
                         else
                         {
@@ -58,25 +58,25 @@ namespace CarParkSimulator
                             if (MessageBox.Show("Please pay by card.", "PayByCard", MessageBoxButtons.OKCancel) == DialogResult.OK)
                             {
                                 message = "Thank you, drive safely.";
-                                tickets.RemoveTicket(ticketCode);
-                                carPark.TicketValidated();
+                                ChipCoins.RemoveChipCoin(ChipCoinCode);
+                                carPark.ChipCoinValidated();
                                 MessageBoxManager.Unregister();
-                                return TicketPaid.TICKET_REMOVED;  //otherwise requests payment
+                                return ChipCoinPaid.ChipCoin_REMOVED;  //otherwise requests payment
                             }
 
                             else
                             {
-                                message = "Ticket has not been paid.";
+                                message = "ChipCoin has not been paid.";
                                 MessageBoxManager.Unregister();
-                                return TicketPaid.NOT_PAID;  //if ticket unpaid, no change, car needs to approach
+                                return ChipCoinPaid.NOT_PAID;  //if ChipCoin unpaid, no change, car needs to approach
                             }
                         }
                     }
                 }
             }
 
-            message = "Not valid ticket.";
-            return TicketPaid.NOT_VALID;
+            message = "Not valid ChipCoin.";
+            return ChipCoinPaid.NOT_VALID;
 
         }
 
@@ -92,9 +92,9 @@ namespace CarParkSimulator
     }
 }
 
-enum TicketPaid //Creates common references within namespace
+enum ChipCoinPaid //Creates common references within namespace
 {
-    TICKET_REMOVED,
+    ChipCoin_REMOVED,
     NOT_PAID,
     NOT_VALID
 }

@@ -30,14 +30,14 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnParkCar = new System.Windows.Forms.Button();
-            this.lblTicketMachine = new System.Windows.Forms.Label();
+            this.lblChipCoinMachine = new System.Windows.Forms.Label();
             this.btnCarEntersCarPark = new System.Windows.Forms.Button();
-            this.btnDriverPressesForTicket = new System.Windows.Forms.Button();
+            this.btnDriverPressesForChipCoin = new System.Windows.Forms.Button();
             this.btnCarArrivesAtEntrance = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblTicketValidator = new System.Windows.Forms.Label();
+            this.lblChipCoinValidator = new System.Windows.Forms.Label();
             this.btnCarExitsCarPark = new System.Windows.Forms.Button();
-            this.btnDriverEntersTicket = new System.Windows.Forms.Button();
+            this.btnDriverEntersChipCoin = new System.Windows.Forms.Button();
             this.btnCarArrivesAtExit = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
@@ -45,7 +45,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblSpacesByFloor = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.lstActiveTickets = new System.Windows.Forms.Label();
+            this.lstActiveChipCoins = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblExitBarrier = new System.Windows.Forms.Label();
@@ -61,7 +61,7 @@
             this.lblSpaces = new System.Windows.Forms.Label();
             this.lblFullSign = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.btnPayForTicket = new System.Windows.Forms.Button();
+            this.btnPayForChipCoin = new System.Windows.Forms.Button();
             this.btnCarLeavesSpace = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -75,9 +75,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnParkCar);
-            this.groupBox1.Controls.Add(this.lblTicketMachine);
+            this.groupBox1.Controls.Add(this.lblChipCoinMachine);
             this.groupBox1.Controls.Add(this.btnCarEntersCarPark);
-            this.groupBox1.Controls.Add(this.btnDriverPressesForTicket);
+            this.groupBox1.Controls.Add(this.btnDriverPressesForChipCoin);
             this.groupBox1.Controls.Add(this.btnCarArrivesAtEntrance);
             this.groupBox1.Location = new System.Drawing.Point(12, 148);
             this.groupBox1.Name = "groupBox1";
@@ -97,16 +97,16 @@
             this.btnParkCar.Visible = false;
             this.btnParkCar.Click += new System.EventHandler(this.btnParkCar_Click);
             // 
-            // lblTicketMachine
+            // lblChipCoinMachine
             // 
-            this.lblTicketMachine.BackColor = System.Drawing.Color.DimGray;
-            this.lblTicketMachine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblTicketMachine.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblTicketMachine.Location = new System.Drawing.Point(6, 20);
-            this.lblTicketMachine.Name = "lblTicketMachine";
-            this.lblTicketMachine.Size = new System.Drawing.Size(188, 31);
-            this.lblTicketMachine.TabIndex = 1;
-            this.lblTicketMachine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblChipCoinMachine.BackColor = System.Drawing.Color.DimGray;
+            this.lblChipCoinMachine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblChipCoinMachine.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblChipCoinMachine.Location = new System.Drawing.Point(6, 20);
+            this.lblChipCoinMachine.Name = "lblChipCoinMachine";
+            this.lblChipCoinMachine.Size = new System.Drawing.Size(188, 31);
+            this.lblChipCoinMachine.TabIndex = 1;
+            this.lblChipCoinMachine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCarEntersCarPark
             // 
@@ -119,16 +119,16 @@
             this.btnCarEntersCarPark.Visible = false;
             this.btnCarEntersCarPark.Click += new System.EventHandler(this.CarEntersCarPark);
             // 
-            // btnDriverPressesForTicket
+            // btnDriverPressesForChipCoin
             // 
-            this.btnDriverPressesForTicket.Location = new System.Drawing.Point(6, 117);
-            this.btnDriverPressesForTicket.Name = "btnDriverPressesForTicket";
-            this.btnDriverPressesForTicket.Size = new System.Drawing.Size(188, 54);
-            this.btnDriverPressesForTicket.TabIndex = 1;
-            this.btnDriverPressesForTicket.Text = "Driver presses for ticket";
-            this.btnDriverPressesForTicket.UseVisualStyleBackColor = true;
-            this.btnDriverPressesForTicket.Visible = false;
-            this.btnDriverPressesForTicket.Click += new System.EventHandler(this.DriverPressesForTicket);
+            this.btnDriverPressesForChipCoin.Location = new System.Drawing.Point(6, 117);
+            this.btnDriverPressesForChipCoin.Name = "btnDriverPressesForChipCoin";
+            this.btnDriverPressesForChipCoin.Size = new System.Drawing.Size(188, 54);
+            this.btnDriverPressesForChipCoin.TabIndex = 1;
+            this.btnDriverPressesForChipCoin.Text = "Driver presses for ChipCoin";
+            this.btnDriverPressesForChipCoin.UseVisualStyleBackColor = true;
+            this.btnDriverPressesForChipCoin.Visible = false;
+            this.btnDriverPressesForChipCoin.Click += new System.EventHandler(this.DriverPressesForChipCoin);
             // 
             // btnCarArrivesAtEntrance
             // 
@@ -144,9 +144,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnCarLeavesSpace);
-            this.groupBox2.Controls.Add(this.lblTicketValidator);
+            this.groupBox2.Controls.Add(this.lblChipCoinValidator);
             this.groupBox2.Controls.Add(this.btnCarExitsCarPark);
-            this.groupBox2.Controls.Add(this.btnDriverEntersTicket);
+            this.groupBox2.Controls.Add(this.btnDriverEntersChipCoin);
             this.groupBox2.Controls.Add(this.btnCarArrivesAtExit);
             this.groupBox2.Location = new System.Drawing.Point(226, 148);
             this.groupBox2.Name = "groupBox2";
@@ -155,16 +155,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Exit simulator";
             // 
-            // lblTicketValidator
+            // lblChipCoinValidator
             // 
-            this.lblTicketValidator.BackColor = System.Drawing.Color.DimGray;
-            this.lblTicketValidator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblTicketValidator.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblTicketValidator.Location = new System.Drawing.Point(6, 20);
-            this.lblTicketValidator.Name = "lblTicketValidator";
-            this.lblTicketValidator.Size = new System.Drawing.Size(188, 31);
-            this.lblTicketValidator.TabIndex = 1;
-            this.lblTicketValidator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblChipCoinValidator.BackColor = System.Drawing.Color.DimGray;
+            this.lblChipCoinValidator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblChipCoinValidator.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblChipCoinValidator.Location = new System.Drawing.Point(6, 20);
+            this.lblChipCoinValidator.Name = "lblChipCoinValidator";
+            this.lblChipCoinValidator.Size = new System.Drawing.Size(188, 31);
+            this.lblChipCoinValidator.TabIndex = 1;
+            this.lblChipCoinValidator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCarExitsCarPark
             // 
@@ -177,16 +177,16 @@
             this.btnCarExitsCarPark.Visible = false;
             this.btnCarExitsCarPark.Click += new System.EventHandler(this.CarExitsCarPark);
             // 
-            // btnDriverEntersTicket
+            // btnDriverEntersChipCoin
             // 
-            this.btnDriverEntersTicket.Location = new System.Drawing.Point(6, 176);
-            this.btnDriverEntersTicket.Name = "btnDriverEntersTicket";
-            this.btnDriverEntersTicket.Size = new System.Drawing.Size(188, 54);
-            this.btnDriverEntersTicket.TabIndex = 1;
-            this.btnDriverEntersTicket.Text = "Driver enters ticket";
-            this.btnDriverEntersTicket.UseVisualStyleBackColor = true;
-            this.btnDriverEntersTicket.Visible = false;
-            this.btnDriverEntersTicket.Click += new System.EventHandler(this.DriverEntersTicket);
+            this.btnDriverEntersChipCoin.Location = new System.Drawing.Point(6, 176);
+            this.btnDriverEntersChipCoin.Name = "btnDriverEntersChipCoin";
+            this.btnDriverEntersChipCoin.Size = new System.Drawing.Size(188, 54);
+            this.btnDriverEntersChipCoin.TabIndex = 1;
+            this.btnDriverEntersChipCoin.Text = "Driver enters ChipCoin";
+            this.btnDriverEntersChipCoin.UseVisualStyleBackColor = true;
+            this.btnDriverEntersChipCoin.Visible = false;
+            this.btnDriverEntersChipCoin.Click += new System.EventHandler(this.DriverEntersChipCoin);
             // 
             // btnCarArrivesAtExit
             // 
@@ -257,22 +257,22 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.lstActiveTickets);
+            this.groupBox6.Controls.Add(this.lstActiveChipCoins);
             this.groupBox6.Location = new System.Drawing.Point(171, 20);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(144, 211);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Active Tickets";
+            this.groupBox6.Text = "Active ChipCoins";
             // 
-            // lstActiveTickets
+            // lstActiveChipCoins
             // 
-            this.lstActiveTickets.BackColor = System.Drawing.Color.White;
-            this.lstActiveTickets.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.lstActiveTickets.Location = new System.Drawing.Point(6, 15);
-            this.lstActiveTickets.Name = "lstActiveTickets";
-            this.lstActiveTickets.Size = new System.Drawing.Size(132, 189);
-            this.lstActiveTickets.TabIndex = 1;
+            this.lstActiveChipCoins.BackColor = System.Drawing.Color.White;
+            this.lstActiveChipCoins.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.lstActiveChipCoins.Location = new System.Drawing.Point(6, 15);
+            this.lstActiveChipCoins.Name = "lstActiveChipCoins";
+            this.lstActiveChipCoins.Size = new System.Drawing.Size(132, 189);
+            this.lstActiveChipCoins.TabIndex = 1;
             // 
             // groupBox5
             // 
@@ -410,7 +410,7 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.btnPayForTicket);
+            this.groupBox7.Controls.Add(this.btnPayForChipCoin);
             this.groupBox7.Location = new System.Drawing.Point(568, 54);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(200, 82);
@@ -418,15 +418,15 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Pay Machine simulator";
             // 
-            // btnPayForTicket
+            // btnPayForChipCoin
             // 
-            this.btnPayForTicket.Location = new System.Drawing.Point(6, 19);
-            this.btnPayForTicket.Name = "btnPayForTicket";
-            this.btnPayForTicket.Size = new System.Drawing.Size(188, 54);
-            this.btnPayForTicket.TabIndex = 0;
-            this.btnPayForTicket.Text = "Pay for Ticket";
-            this.btnPayForTicket.UseVisualStyleBackColor = true;
-            this.btnPayForTicket.Click += new System.EventHandler(this.btnPayForTicket_Click);
+            this.btnPayForChipCoin.Location = new System.Drawing.Point(6, 19);
+            this.btnPayForChipCoin.Name = "btnPayForChipCoin";
+            this.btnPayForChipCoin.Size = new System.Drawing.Size(188, 54);
+            this.btnPayForChipCoin.TabIndex = 0;
+            this.btnPayForChipCoin.Text = "Pay for ChipCoin";
+            this.btnPayForChipCoin.UseVisualStyleBackColor = true;
+            this.btnPayForChipCoin.Click += new System.EventHandler(this.btnPayForChipCoin_Click);
             // 
             // btnCarLeavesSpace
             // 
@@ -472,14 +472,14 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label lblTicketMachine;
+        private System.Windows.Forms.Label lblChipCoinMachine;
         private System.Windows.Forms.Button btnCarEntersCarPark;
-        private System.Windows.Forms.Button btnDriverPressesForTicket;
+        private System.Windows.Forms.Button btnDriverPressesForChipCoin;
         private System.Windows.Forms.Button btnCarArrivesAtEntrance;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label lblTicketValidator;
+        private System.Windows.Forms.Label lblChipCoinValidator;
         private System.Windows.Forms.Button btnCarExitsCarPark;
-        private System.Windows.Forms.Button btnDriverEntersTicket;
+        private System.Windows.Forms.Button btnDriverEntersChipCoin;
         private System.Windows.Forms.Button btnCarArrivesAtExit;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnReset;
@@ -499,9 +499,9 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Label lstActiveTickets;
+        private System.Windows.Forms.Label lstActiveChipCoins;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button btnPayForTicket;
+        private System.Windows.Forms.Button btnPayForChipCoin;
         private System.Windows.Forms.Button btnParkCar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSpacesByFloor;

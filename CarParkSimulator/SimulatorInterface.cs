@@ -10,9 +10,9 @@ namespace CarParkSimulator
     public partial class SimulatorInterface : Form
     {
         // Attributes ///        
-        private TicketMachine ticketMachine;
-        private ActiveTickets activeTickets;
-        private TicketValidator ticketValidator;
+        private ChipCoinMachine ChipCoinMachine;
+        private ActiveChipCoins activeChipCoins;
+        private ChipCoinValidator ChipCoinValidator;
         private Barrier entryBarrier;
         private Barrier exitBarrier;
         private FullSign fullSign;
@@ -35,29 +35,29 @@ namespace CarParkSimulator
         // Operations ///
         private void ResetSystem(object sender, EventArgs e)
         {
-            activeTickets = new ActiveTickets();
-            ticketMachine = new TicketMachine(activeTickets);
-            ticketValidator = new TicketValidator(activeTickets);
+            activeChipCoins = new ActiveChipCoins();
+            ChipCoinMachine = new ChipCoinMachine(activeChipCoins);
+            ChipCoinValidator = new ChipCoinValidator(activeChipCoins);
 
-            payMachine = new PayMachine(activeTickets);
+            payMachine = new PayMachine(activeChipCoins);
 
             entryBarrier = new Barrier();
             exitBarrier = new Barrier();
             fullSign = new FullSign();
-            carPark = new CarPark(ticketMachine, ticketValidator, fullSign, entryBarrier, exitBarrier);//, payMachine);
+            carPark = new CarPark(ChipCoinMachine, ChipCoinValidator, fullSign, entryBarrier, exitBarrier);//, payMachine);
             entrySensor = new EntrySensor(carPark);
             exitSensor = new ExitSensor(carPark);
 
-            ticketMachine.AssignCarPark(carPark);
-            ticketValidator.AssignCarPark(carPark);
+            ChipCoinMachine.AssignCarPark(carPark);
+            ChipCoinValidator.AssignCarPark(carPark);
 
             /////////////////////////////////////////
 
             btnCarArrivesAtEntrance.Visible = true;
-            btnDriverPressesForTicket.Visible = false;
+            btnDriverPressesForChipCoin.Visible = false;
             btnCarEntersCarPark.Visible = false;
             btnCarArrivesAtExit.Visible = false;
-            btnDriverEntersTicket.Visible = false;
+            btnDriverEntersChipCoin.Visible = false;
             btnCarExitsCarPark.Visible = false;
             btnParkCar.Visible = false;
             btnCarLeavesSpace.Visible = false;
@@ -69,14 +69,14 @@ namespace CarParkSimulator
         {
             entrySensor.CarDetected();                  //Calls the entry class, allowing process to start.
             btnCarArrivesAtEntrance.Visible = false;    //Disables button clicked.
-            btnDriverPressesForTicket.Visible = true;   //Enables next step.
+            btnDriverPressesForChipCoin.Visible = true;   //Enables next step.
             UpdateDisplay();
         }
 
-        private void DriverPressesForTicket(object sender, EventArgs e)
+        private void DriverPressesForChipCoin(object sender, EventArgs e)
         {
-            ticketMachine.PrintTicket();                //Calls the ticket dispenser, creating the ticket.
-            btnDriverPressesForTicket.Visible = false;  //Disables button clicked.
+            ChipCoinMachine.DispenseChipCoin();                //Calls the ChipCoin dispenser, creating the ChipCoin.
+            btnDriverPressesForChipCoin.Visible = false;  //Disables button clicked.
             btnCarEntersCarPark.Visible = true;         //Enables next step.
             UpdateDisplay();
         }
@@ -95,13 +95,13 @@ namespace CarParkSimulator
         
         private void btnParkCar_Click(object sender, EventArgs e)
         {
-            string ticketCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ticket HASH:  (This is a simulation of scanning the ticket code");
-            Convert.ToInt32(ticketCode);
-            foreach (Ticket ticket in activeTickets.GetTickets())
+            string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is a simulation of scanning the ChipCoin code");
+            Convert.ToInt32(ChipCoinCode);
+            foreach (ChipCoin ChipCoin in activeChipCoins.GetChipCoins())
             {
-                if (Convert.ToInt32(ticketCode) == ticket.GetHashCode())
+                if (Convert.ToInt32(ChipCoinCode) == ChipCoin.GetHashCode())
                     {
-                        carPark.parkCar(Convert.ToInt32(ticketCode));
+                        carPark.parkCar(Convert.ToInt32(ChipCoinCode));
                         break;
                     }
             }
@@ -114,32 +114,32 @@ namespace CarParkSimulator
         {
             exitSensor.CarDetected();                   //Calls the entry class, allowing validation process to start.
             btnCarArrivesAtExit.Visible = false;        //Disables button clicked.
-            btnDriverEntersTicket.Visible = true;       //Enables next step.
+            btnDriverEntersChipCoin.Visible = true;       //Enables next step.
             UpdateDisplay();
         }
 
-        private void DriverEntersTicket(object sender, EventArgs e)
+        private void DriverEntersChipCoin(object sender, EventArgs e)
         {
-            //int ticketCode = activeTickets.GetTickets()[0].GetHashCode();       //Generates the inputted ticket's hashcode.
-            string ticketCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ticket HASH:  (This is a simulation of scanning the ticket code");
+            //int ChipCoinCode = activeChipCoins.GetChipCoins()[0].GetHashCode();       //Generates the inputted ChipCoin's hashcode.
+            string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is a simulation of scanning the ChipCoin code");
 
-            TicketPaid paid = ticketValidator.TicketEntered(Convert.ToInt32(ticketCode));  //Validates and removes the ticket.
-                //ABOVE REMOVES ONLY IF TICKET IS PAID
+            ChipCoinPaid paid = ChipCoinValidator.ChipCoinEntered(Convert.ToInt32(ChipCoinCode));  //Validates and removes the ChipCoin.
+                //ABOVE REMOVES ONLY IF ChipCoin IS PAID
             switch (paid)
             {
-                case TicketPaid.TICKET_REMOVED:
+                case ChipCoinPaid.ChipCoin_REMOVED:
                     btnCarExitsCarPark.Visible = true;
                     break;
-                case TicketPaid.NOT_PAID:
+                case ChipCoinPaid.NOT_PAID:
                     btnCarArrivesAtExit.Visible = true;
                     break;
-                case TicketPaid.NOT_VALID:
+                case ChipCoinPaid.NOT_VALID:
                     btnCarArrivesAtExit.Visible = true;
                     break;
                 default:
                     break;
             }
-            btnDriverEntersTicket.Visible = false;      //Disables button clicked.
+            btnDriverEntersChipCoin.Visible = false;      //Disables button clicked.
             UpdateDisplay();
         }
 
@@ -160,8 +160,8 @@ namespace CarParkSimulator
 
         private void UpdateDisplay()
         {
-            lblTicketMachine.Text = ticketMachine.GetMessage();
-            lblTicketValidator.Text = ticketValidator.GetMessage();
+            lblChipCoinMachine.Text = ChipCoinMachine.GetMessage();
+            lblChipCoinValidator.Text = ChipCoinValidator.GetMessage();
             lblEntrySensor.Text = Convert.ToString(entrySensor.IsCarOnSensor());
             lblEntryBarrier.Text = Convert.ToString(entryBarrier.IsLifted());
             lblExitSensor.Text = Convert.ToString(exitSensor.IsCarOnSensor());
@@ -170,31 +170,31 @@ namespace CarParkSimulator
             lblSpaces.Text = Convert.ToString(carPark.getCurrentSpaces());
             lblSpacesByFloor.Text = carPark.getAllSpaces();
 
-            string TicketList = "";
-            foreach (Ticket ticket in activeTickets.GetTickets())
+            string ChipCoinList = "";
+            foreach (ChipCoin ChipCoin in activeChipCoins.GetChipCoins())
             {
-                TicketList = TicketList + "#" + Convert.ToString(ticket.GetHashCode()) + ": " + Convert.ToString(ticket.IsPaid()) + "\n";
+                ChipCoinList = ChipCoinList + "#" + Convert.ToString(ChipCoin.GetHashCode()) + ": " + Convert.ToString(ChipCoin.IsPaid()) + ": \n";
             }
-            lstActiveTickets.Text = TicketList;
+            lstActiveChipCoins.Text = ChipCoinList;
         }
 
         //PAYMENT FUNCTIONALITY
-        private void btnPayForTicket_Click(object sender, EventArgs e)
+        private void btnPayForChipCoin_Click(object sender, EventArgs e)
         {
-            string ticketCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ticket HASH:  (This is a simulation of scanning the ticket code");
-            payMachine.PayForTicket(Convert.ToInt32(ticketCode));
+            string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is a simulation of scanning the ChipCoin code");
+            payMachine.PayForChipCoin(Convert.ToInt32(ChipCoinCode));
             UpdateDisplay();
         }
 
         private void btnCarLeavesSpace_Click(object sender, EventArgs e)
         {
-            string ticketCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ticket HASH:  (This is a simulation of scanning the ticket code");
-            Convert.ToInt32(ticketCode);
-            foreach (Ticket ticket in activeTickets.GetTickets())
+            string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is a simulation of scanning the ChipCoin code");
+            Convert.ToInt32(ChipCoinCode);
+            foreach (ChipCoin ChipCoin in activeChipCoins.GetChipCoins())
             {
-                if (Convert.ToInt32(ticketCode) == ticket.GetHashCode())
+                if (Convert.ToInt32(ChipCoinCode) == ChipCoin.GetHashCode())
                 {
-                    carPark.carLeavesParkingSpace(Convert.ToInt32(ticketCode));
+                    carPark.carLeavesParkingSpace(Convert.ToInt32(ChipCoinCode));
                     break;
                 }
             }

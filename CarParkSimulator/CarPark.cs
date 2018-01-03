@@ -16,17 +16,17 @@ namespace CarParkSimulator
         int[] carParkSpaces = new int[carParkFloors];
         int[,] carParkLayout = new int[carParkFloors, spacesPerFloor];
 
-        private TicketMachine ticketMachine;
-        private TicketValidator ticketValidator;
+        private ChipCoinMachine ChipCoinMachine;
+        private ChipCoinValidator ChipCoinValidator;
         private Barrier entryBarrier;
         private Barrier exitBarrier;
         private FullSign fullSign;
 
         //CONSTRUCTOR
-        public CarPark (TicketMachine ticketMachine, TicketValidator ticketValidator, FullSign fullSign, Barrier entryBarrier, Barrier exitBarrier)
+        public CarPark (ChipCoinMachine ChipCoinMachine, ChipCoinValidator ChipCoinValidator, FullSign fullSign, Barrier entryBarrier, Barrier exitBarrier)
         {
-            this.ticketMachine = ticketMachine;
-            this.ticketValidator = ticketValidator;
+            this.ChipCoinMachine = ChipCoinMachine;
+            this.ChipCoinValidator = ChipCoinValidator;
             this.fullSign = fullSign;
             this.entryBarrier = entryBarrier;
             this.exitBarrier = exitBarrier;
@@ -38,10 +38,10 @@ namespace CarParkSimulator
         //OPERATIONS
         public void CarArrivedAtEntrance()
         {
-            ticketMachine.CarArrived();
+            ChipCoinMachine.CarArrived();
         }
 
-        public void TicketDispensed()
+        public void ChipCoinDispensed()
         {
             entryBarrier.Raise();
         }
@@ -49,17 +49,17 @@ namespace CarParkSimulator
         public void CarEnteredCarpark()
         {
             entryBarrier.Lower();
-            ticketMachine.ClearMessage();
+            ChipCoinMachine.ClearMessage();
             currentSpaces = currentSpaces - 1;      //A car takes up a parking space.
             fullSign.SetLit(IsFull());
         }
 
         public void CarArrivedAtExit()
         {
-            ticketValidator.CarArrived();
+            ChipCoinValidator.CarArrived();
         }
 
-        public void TicketValidated()
+        public void ChipCoinValidated()
         {
             exitBarrier.Raise();
         }
@@ -67,7 +67,7 @@ namespace CarParkSimulator
         public void CarExitedCarpark()
         {
             exitBarrier.Lower();
-            ticketValidator.ClearMessage();
+            ChipCoinValidator.ClearMessage();
             currentSpaces = currentSpaces + 1;      //A parking space is now free.
             fullSign.SetLit(IsFull());
         }
@@ -110,7 +110,7 @@ namespace CarParkSimulator
             return currentSpaces;
         }
 
-        public void parkCar(int ticketCode)
+        public void parkCar(int ChipCoinCode)
         {
             bool parked = false;
             while (parked == false)
@@ -126,7 +126,7 @@ namespace CarParkSimulator
                             {
                                 if (carParkLayout[floor, i] == 0)
                                 {
-                                    carParkLayout[floor, i] = ticketCode;
+                                    carParkLayout[floor, i] = ChipCoinCode;
                                     parked = true;
                                 }
                             }
@@ -168,7 +168,7 @@ namespace CarParkSimulator
             return allSpaces;
         }
 
-        public void carLeavesParkingSpace(int ticketCode)
+        public void carLeavesParkingSpace(int ChipCoinCode)
         {
             bool parked = true;
             while (parked == true)
@@ -182,7 +182,7 @@ namespace CarParkSimulator
                         {
                             while (parked == true)
                             {
-                                if (carParkLayout[floor, i] == ticketCode)
+                                if (carParkLayout[floor, i] == ChipCoinCode)
                                 {
                                     carParkLayout[floor, i] = 0;
                                     parked = false;
