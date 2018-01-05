@@ -22,6 +22,7 @@ namespace CarParkSimulator
             ChipCoins.Add(new ChipCoin());          //Creates a new ChipCoin and adds to list.
             SetChipCoinPIN(PIN);                  //Assigns PIN to newly created ChipCoin
             SetChipCoinPlate(regPlate);
+
         }
 
         public List<ChipCoin> GetChipCoins()

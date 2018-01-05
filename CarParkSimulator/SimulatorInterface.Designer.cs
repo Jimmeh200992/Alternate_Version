@@ -35,6 +35,7 @@
             this.btnDriverPressesForChipCoin = new System.Windows.Forms.Button();
             this.btnCarArrivesAtEntrance = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnCarLeavesSpace = new System.Windows.Forms.Button();
             this.lblChipCoinValidator = new System.Windows.Forms.Label();
             this.btnCarExitsCarPark = new System.Windows.Forms.Button();
             this.btnDriverEntersChipCoin = new System.Windows.Forms.Button();
@@ -60,16 +61,16 @@
             this.label8 = new System.Windows.Forms.Label();
             this.lblSpaces = new System.Windows.Forms.Label();
             this.lblFullSign = new System.Windows.Forms.Label();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnAdvanceTime = new System.Windows.Forms.Button();
             this.btnPayForChipCoin = new System.Windows.Forms.Button();
-            this.btnCarLeavesSpace = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblSystemTime = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -154,6 +155,17 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Exit simulator";
+            // 
+            // btnCarLeavesSpace
+            // 
+            this.btnCarLeavesSpace.Location = new System.Drawing.Point(6, 57);
+            this.btnCarLeavesSpace.Name = "btnCarLeavesSpace";
+            this.btnCarLeavesSpace.Size = new System.Drawing.Size(188, 54);
+            this.btnCarLeavesSpace.TabIndex = 7;
+            this.btnCarLeavesSpace.Text = "Car leaves space";
+            this.btnCarLeavesSpace.UseVisualStyleBackColor = true;
+            this.btnCarLeavesSpace.Visible = false;
+            this.btnCarLeavesSpace.Click += new System.EventHandler(this.btnCarLeavesSpace_Click);
             // 
             // lblChipCoinValidator
             // 
@@ -408,43 +420,53 @@
             this.lblFullSign.TabIndex = 0;
             this.lblFullSign.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // groupBox7
+            // btnAdvanceTime
             // 
-            this.groupBox7.Controls.Add(this.btnPayForChipCoin);
-            this.groupBox7.Location = new System.Drawing.Point(568, 54);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(200, 82);
-            this.groupBox7.TabIndex = 5;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Pay Machine simulator";
+            this.btnAdvanceTime.Location = new System.Drawing.Point(440, 82);
+            this.btnAdvanceTime.Name = "btnAdvanceTime";
+            this.btnAdvanceTime.Size = new System.Drawing.Size(145, 54);
+            this.btnAdvanceTime.TabIndex = 6;
+            this.btnAdvanceTime.Text = "Advance time 1 hour";
+            this.btnAdvanceTime.UseVisualStyleBackColor = true;
+            this.btnAdvanceTime.Click += new System.EventHandler(this.btnAdvanceTime_Click);
             // 
             // btnPayForChipCoin
             // 
-            this.btnPayForChipCoin.Location = new System.Drawing.Point(6, 19);
+            this.btnPayForChipCoin.Location = new System.Drawing.Point(611, 82);
             this.btnPayForChipCoin.Name = "btnPayForChipCoin";
-            this.btnPayForChipCoin.Size = new System.Drawing.Size(188, 54);
+            this.btnPayForChipCoin.Size = new System.Drawing.Size(145, 54);
             this.btnPayForChipCoin.TabIndex = 0;
             this.btnPayForChipCoin.Text = "Pay for ChipCoin";
             this.btnPayForChipCoin.UseVisualStyleBackColor = true;
             this.btnPayForChipCoin.Click += new System.EventHandler(this.btnPayForChipCoin_Click);
             // 
-            // btnCarLeavesSpace
+            // label2
             // 
-            this.btnCarLeavesSpace.Location = new System.Drawing.Point(6, 57);
-            this.btnCarLeavesSpace.Name = "btnCarLeavesSpace";
-            this.btnCarLeavesSpace.Size = new System.Drawing.Size(188, 54);
-            this.btnCarLeavesSpace.TabIndex = 7;
-            this.btnCarLeavesSpace.Text = "Car leaves space";
-            this.btnCarLeavesSpace.UseVisualStyleBackColor = true;
-            this.btnCarLeavesSpace.Visible = false;
-            this.btnCarLeavesSpace.Click += new System.EventHandler(this.btnCarLeavesSpace_Click);
+            this.label2.Location = new System.Drawing.Point(440, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 20);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "System Time";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSystemTime
+            // 
+            this.lblSystemTime.BackColor = System.Drawing.Color.White;
+            this.lblSystemTime.Location = new System.Drawing.Point(515, 59);
+            this.lblSystemTime.Name = "lblSystemTime";
+            this.lblSystemTime.Size = new System.Drawing.Size(70, 20);
+            this.lblSystemTime.TabIndex = 8;
+            this.lblSystemTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SimulatorInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 532);
-            this.Controls.Add(this.groupBox7);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblSystemTime);
+            this.Controls.Add(this.btnPayForChipCoin);
+            this.Controls.Add(this.btnAdvanceTime);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.label3);
@@ -463,7 +485,6 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -500,12 +521,14 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label lstActiveChipCoins;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button btnPayForChipCoin;
         private System.Windows.Forms.Button btnParkCar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSpacesByFloor;
         private System.Windows.Forms.Button btnCarLeavesSpace;
+        private System.Windows.Forms.Button btnAdvanceTime;
+        private System.Windows.Forms.Button btnPayForChipCoin;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblSystemTime;
     }
 }
 

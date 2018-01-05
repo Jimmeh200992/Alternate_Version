@@ -12,6 +12,7 @@ namespace CarParkSimulator
         private int PIN = 99999999;  //default value used, made unreachable by standard entry
         private string regPlate = "";
         private int floor = 0;
+        DateTime timeStamp = DateTime.Now;
 
         //CONSTRUCTORS
         public ChipCoin()
@@ -57,6 +58,16 @@ namespace CarParkSimulator
         public void SetCurrentFloor(int floor)
         {
             this.floor = floor;
+        }
+
+        public DateTime GetTimeCreated()
+        {
+            return timeStamp;
+        }
+
+        public void OverrideTimeStamp(DateTime timeStamp)
+        {
+            this.timeStamp = timeStamp;
         }
     }
 }

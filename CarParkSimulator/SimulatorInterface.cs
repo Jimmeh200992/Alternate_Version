@@ -62,6 +62,10 @@ namespace CarParkSimulator
             btnParkCar.Visible = false;
             btnCarLeavesSpace.Visible = false;
 
+            DateTime sysTime = DateTime.Now;
+            string sysTimeRead = sysTime.ToString("HH:mm");
+            lblSystemTime.Text = sysTimeRead;
+
             UpdateDisplay();
         }
 
@@ -201,6 +205,11 @@ namespace CarParkSimulator
             btnCarLeavesSpace.Visible = false;
             btnCarArrivesAtExit.Visible = true;         //Enables exit button.
             UpdateDisplay();
+        }
+
+        private void btnAdvanceTime_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
