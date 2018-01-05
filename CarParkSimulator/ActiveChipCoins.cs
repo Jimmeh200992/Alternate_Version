@@ -17,12 +17,12 @@ namespace CarParkSimulator
         }
         
         //OPERATIONS
-        public void AddChipCoin(int PIN, string regPlate)
+        public void AddChipCoin(int PIN, string regPlate, string sysTime)
         {
             ChipCoins.Add(new ChipCoin());          //Creates a new ChipCoin and adds to list.
             SetChipCoinPIN(PIN);                  //Assigns PIN to newly created ChipCoin
             SetChipCoinPlate(regPlate);
-
+            SetChipCoinTime(sysTime);
         }
 
         public List<ChipCoin> GetChipCoins()
@@ -62,6 +62,16 @@ namespace CarParkSimulator
                 string checkValue = ChipCoin.GetRegPlate();
                 if (checkValue == "")
                     ChipCoin.SetRegPlate(regPlate);
+            }
+        }
+
+        public void SetChipCoinTime(string sysTime)
+        {
+            foreach (ChipCoin ChipCoin in ChipCoins)
+            {
+                string checkValue = ChipCoin.GetTimeStamp();
+                if (checkValue == "")
+                    ChipCoin.SetTimeStamp(sysTime);
             }
         }
     }

@@ -130,6 +130,8 @@ namespace CarParkSimulator
                                     parked = true;
                                     return floor;
                                 }
+                                else
+                                    break;
                             }
                         }
                     }
@@ -189,6 +191,8 @@ namespace CarParkSimulator
                                     carParkLayout[floor, i] = 0;
                                     parked = false;
                                 }
+                                else
+                                    break;
                             }
                         }
                     }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnParkCar = new System.Windows.Forms.Button();
             this.lblChipCoinMachine = new System.Windows.Forms.Label();
@@ -65,6 +66,7 @@
             this.btnPayForChipCoin = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSystemTime = new System.Windows.Forms.Label();
+            this.timerSysTime = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -458,6 +460,11 @@
             this.lblSystemTime.TabIndex = 8;
             this.lblSystemTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // timerSysTime
+            // 
+            this.timerSysTime.Interval = 200;
+            this.timerSysTime.Tick += new System.EventHandler(this.timerSysTime_Tick);
+            // 
             // SimulatorInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -529,6 +536,7 @@
         private System.Windows.Forms.Button btnPayForChipCoin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblSystemTime;
+        private System.Windows.Forms.Timer timerSysTime;
     }
 }
 

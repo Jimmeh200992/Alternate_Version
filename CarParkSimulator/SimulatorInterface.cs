@@ -21,6 +21,8 @@ namespace CarParkSimulator
         private ExitSensor exitSensor;
 
         private PayMachine payMachine;
+
+        private string sysTime;
         /////////////////
 
 
@@ -62,9 +64,8 @@ namespace CarParkSimulator
             btnParkCar.Visible = false;
             btnCarLeavesSpace.Visible = false;
 
-            DateTime sysTime = DateTime.Now;
-            string sysTimeRead = sysTime.ToString("HH:mm");
-            lblSystemTime.Text = sysTimeRead;
+            sysTime = (DateTime.Now).ToString("HH:mm");
+            lblSystemTime.Text = sysTime;
 
             UpdateDisplay();
         }
@@ -79,7 +80,7 @@ namespace CarParkSimulator
 
         private void DriverPressesForChipCoin(object sender, EventArgs e)
         {
-            ChipCoinMachine.DispenseChipCoin();                //Calls the ChipCoin dispenser, creating the ChipCoin.
+            ChipCoinMachine.DispenseChipCoin(sysTime);                //Calls the ChipCoin dispenser, creating the ChipCoin.
             btnDriverPressesForChipCoin.Visible = false;  //Disables button clicked.
             btnCarEntersCarPark.Visible = true;         //Enables next step.
             UpdateDisplay();
@@ -209,7 +210,13 @@ namespace CarParkSimulator
 
         private void btnAdvanceTime_Click(object sender, EventArgs e)
         {
+            lblSystemTime.Text = sysTime;
+        }
 
+        private void timerSysTime_Tick(object sender, EventArgs e)
+        {
+            sysTime = "0";
+            lblSystemTime.Text = sysTime;
         }
     }
 }
