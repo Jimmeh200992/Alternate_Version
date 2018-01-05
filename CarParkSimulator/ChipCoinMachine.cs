@@ -29,7 +29,7 @@ namespace CarParkSimulator
             message = "Please press to get a ChipCoin.";
         }
 
-        public void DispenseChipCoin(string sysTime)
+        public void DispenseChipCoin(int sysTime)
         {
             string regPlate = Microsoft.VisualBasic.Interaction.InputBox("Please enter vehicle registration plate (Simulates camera reading plate)");
             string PINEntry = Microsoft.VisualBasic.Interaction.InputBox("Please enter a PIN for your secure parking");  //requests PIN entry

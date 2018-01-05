@@ -21,8 +21,6 @@ namespace CarParkSimulator
         private ExitSensor exitSensor;
 
         private PayMachine payMachine;
-
-        private string sysTime;
         /////////////////
 
 
@@ -63,9 +61,9 @@ namespace CarParkSimulator
             btnCarExitsCarPark.Visible = false;
             btnParkCar.Visible = false;
             btnCarLeavesSpace.Visible = false;
+            timerSysTime.Enabled = true;
 
-            sysTime = (DateTime.Now).ToString("HH:mm");
-            lblSystemTime.Text = sysTime;
+            lblSystemTime.Text = carPark.setSystemTime();
 
             UpdateDisplay();
         }
@@ -80,7 +78,7 @@ namespace CarParkSimulator
 
         private void DriverPressesForChipCoin(object sender, EventArgs e)
         {
-            ChipCoinMachine.DispenseChipCoin(sysTime);                //Calls the ChipCoin dispenser, creating the ChipCoin.
+            ChipCoinMachine.DispenseChipCoin(carPark.getSysTime());                //Calls the ChipCoin dispenser, creating the ChipCoin.
             btnDriverPressesForChipCoin.Visible = false;  //Disables button clicked.
             btnCarEntersCarPark.Visible = true;         //Enables next step.
             UpdateDisplay();
@@ -100,15 +98,21 @@ namespace CarParkSimulator
         
         private void btnParkCar_Click(object sender, EventArgs e)
         {
-            string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is a simulation of scanning the ChipCoin code");
-            Convert.ToInt32(ChipCoinCode);
-            foreach (ChipCoin ChipCoin in activeChipCoins.GetChipCoins())
+            bool parked = false;
+            while (parked == false)
             {
-                if (Convert.ToInt32(ChipCoinCode) == ChipCoin.GetHashCode())
+                string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is a simulation of scanning the ChipCoin code");
+                Convert.ToInt32(ChipCoinCode);
+                foreach (ChipCoin ChipCoin in activeChipCoins.GetChipCoins())
+                {
+                    if (Convert.ToInt32(ChipCoinCode) == ChipCoin.GetHashCode() && ChipCoin.IsParked() == false)
                     {
                         ChipCoin.SetCurrentFloor(carPark.parkCar(Convert.ToInt32(ChipCoinCode)));
+                        parked = true;
+                        ChipCoin.SetParked(parked);
                         break;
                     }
+                }
             }
             btnParkCar.Visible = false;
             btnCarLeavesSpace.Visible = true;         //Enables exit button.
@@ -178,7 +182,7 @@ namespace CarParkSimulator
             string ChipCoinList = "";
             foreach (ChipCoin ChipCoin in activeChipCoins.GetChipCoins())
             {
-                ChipCoinList = ChipCoinList + "#" + Convert.ToString(ChipCoin.GetHashCode()) + ": " + Convert.ToString(ChipCoin.IsPaid()) + ": " + Convert.ToString(ChipCoin.GetCurrentFloor()) + ": " + ChipCoin.GetRegPlate() + "\n";
+                ChipCoinList = ChipCoinList + "#" + Convert.ToString(ChipCoin.GetHashCode()) + ": " + Convert.ToString(ChipCoin.IsPaid()) + ": " + Convert.ToString(ChipCoin.GetCurrentFloor()) + ": " + ChipCoin.GetRegPlate() + ": " + ChipCoin.GetPIN() + ": " + ChipCoin.GetTimeStamp() + "\n";
             }
             lstActiveChipCoins.Text = ChipCoinList;
         }
@@ -187,20 +191,25 @@ namespace CarParkSimulator
         private void btnPayForChipCoin_Click(object sender, EventArgs e)
         {
             string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is a simulation of scanning the ChipCoin code");
-            payMachine.PayForChipCoin(Convert.ToInt32(ChipCoinCode));
+            payMachine.PayForChipCoin(Convert.ToInt32(ChipCoinCode), carPark.getSysHours(), carPark.getSysMinutes());
             UpdateDisplay();
         }
 
         private void btnCarLeavesSpace_Click(object sender, EventArgs e)
         {
-            string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is a simulation of scanning the ChipCoin code");
-            Convert.ToInt32(ChipCoinCode);
-            foreach (ChipCoin ChipCoin in activeChipCoins.GetChipCoins())
+            bool parked = true;
+            while (parked == true)
             {
-                if (Convert.ToInt32(ChipCoinCode) == ChipCoin.GetHashCode())
+                string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is a simulation of scanning the ChipCoin code");
+                Convert.ToInt32(ChipCoinCode);
+                foreach (ChipCoin ChipCoin in activeChipCoins.GetChipCoins())
                 {
-                    carPark.carLeavesParkingSpace(Convert.ToInt32(ChipCoinCode));
-                    break;
+                    if (Convert.ToInt32(ChipCoinCode) == ChipCoin.GetHashCode())
+                    {
+                        carPark.carLeavesParkingSpace(Convert.ToInt32(ChipCoinCode));
+                        parked = false;
+                        ChipCoin.SetParked(parked);
+                    }
                 }
             }
             btnCarLeavesSpace.Visible = false;
@@ -208,15 +217,19 @@ namespace CarParkSimulator
             UpdateDisplay();
         }
 
-        private void btnAdvanceTime_Click(object sender, EventArgs e)
+        private void btnAdvanceTimeHour_Click(object sender, EventArgs e)
         {
-            lblSystemTime.Text = sysTime;
+            lblSystemTime.Text = carPark.advanceSystemTimeHour();
         }
 
         private void timerSysTime_Tick(object sender, EventArgs e)
         {
-            sysTime = "0";
-            lblSystemTime.Text = sysTime;
+            lblSystemTime.Text = carPark.tickSystemTime();
+        }
+
+        private void btnAdvanceTime10Min_Click(object sender, EventArgs e)
+        {
+            lblSystemTime.Text = carPark.advanceSystemTimeMinutes();
         }
     }
 }

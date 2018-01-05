@@ -62,11 +62,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.lblSpaces = new System.Windows.Forms.Label();
             this.lblFullSign = new System.Windows.Forms.Label();
-            this.btnAdvanceTime = new System.Windows.Forms.Button();
+            this.btnAdvanceTimeHour = new System.Windows.Forms.Button();
             this.btnPayForChipCoin = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSystemTime = new System.Windows.Forms.Label();
             this.timerSysTime = new System.Windows.Forms.Timer(this.components);
+            this.btnAdvanceTime10Min = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -246,7 +247,7 @@
             this.groupBox3.Controls.Add(this.lblFullSign);
             this.groupBox3.Location = new System.Drawing.Point(440, 148);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(328, 356);
+            this.groupBox3.Size = new System.Drawing.Size(428, 356);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Internal data";
@@ -274,7 +275,7 @@
             this.groupBox6.Controls.Add(this.lstActiveChipCoins);
             this.groupBox6.Location = new System.Drawing.Point(171, 20);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(144, 211);
+            this.groupBox6.Size = new System.Drawing.Size(251, 211);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Active ChipCoins";
@@ -285,7 +286,7 @@
             this.lstActiveChipCoins.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.lstActiveChipCoins.Location = new System.Drawing.Point(6, 15);
             this.lstActiveChipCoins.Name = "lstActiveChipCoins";
-            this.lstActiveChipCoins.Size = new System.Drawing.Size(132, 189);
+            this.lstActiveChipCoins.Size = new System.Drawing.Size(239, 189);
             this.lstActiveChipCoins.TabIndex = 1;
             // 
             // groupBox5
@@ -422,15 +423,15 @@
             this.lblFullSign.TabIndex = 0;
             this.lblFullSign.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnAdvanceTime
+            // btnAdvanceTimeHour
             // 
-            this.btnAdvanceTime.Location = new System.Drawing.Point(440, 82);
-            this.btnAdvanceTime.Name = "btnAdvanceTime";
-            this.btnAdvanceTime.Size = new System.Drawing.Size(145, 54);
-            this.btnAdvanceTime.TabIndex = 6;
-            this.btnAdvanceTime.Text = "Advance time 1 hour";
-            this.btnAdvanceTime.UseVisualStyleBackColor = true;
-            this.btnAdvanceTime.Click += new System.EventHandler(this.btnAdvanceTime_Click);
+            this.btnAdvanceTimeHour.Location = new System.Drawing.Point(440, 30);
+            this.btnAdvanceTimeHour.Name = "btnAdvanceTimeHour";
+            this.btnAdvanceTimeHour.Size = new System.Drawing.Size(145, 54);
+            this.btnAdvanceTimeHour.TabIndex = 6;
+            this.btnAdvanceTimeHour.Text = "Advance time 1 hour";
+            this.btnAdvanceTimeHour.UseVisualStyleBackColor = true;
+            this.btnAdvanceTimeHour.Click += new System.EventHandler(this.btnAdvanceTimeHour_Click);
             // 
             // btnPayForChipCoin
             // 
@@ -444,7 +445,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(440, 59);
+            this.label2.Location = new System.Drawing.Point(440, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 20);
             this.label2.TabIndex = 7;
@@ -454,7 +455,7 @@
             // lblSystemTime
             // 
             this.lblSystemTime.BackColor = System.Drawing.Color.White;
-            this.lblSystemTime.Location = new System.Drawing.Point(515, 59);
+            this.lblSystemTime.Location = new System.Drawing.Point(515, 7);
             this.lblSystemTime.Name = "lblSystemTime";
             this.lblSystemTime.Size = new System.Drawing.Size(70, 20);
             this.lblSystemTime.TabIndex = 8;
@@ -462,18 +463,29 @@
             // 
             // timerSysTime
             // 
-            this.timerSysTime.Interval = 200;
+            this.timerSysTime.Interval = 5000;
             this.timerSysTime.Tick += new System.EventHandler(this.timerSysTime_Tick);
+            // 
+            // btnAdvanceTime10Min
+            // 
+            this.btnAdvanceTime10Min.Location = new System.Drawing.Point(440, 82);
+            this.btnAdvanceTime10Min.Name = "btnAdvanceTime10Min";
+            this.btnAdvanceTime10Min.Size = new System.Drawing.Size(145, 54);
+            this.btnAdvanceTime10Min.TabIndex = 9;
+            this.btnAdvanceTime10Min.Text = "Advance time 10 minutes";
+            this.btnAdvanceTime10Min.UseVisualStyleBackColor = true;
+            this.btnAdvanceTime10Min.Click += new System.EventHandler(this.btnAdvanceTime10Min_Click);
             // 
             // SimulatorInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 532);
+            this.ClientSize = new System.Drawing.Size(932, 532);
+            this.Controls.Add(this.btnAdvanceTime10Min);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblSystemTime);
             this.Controls.Add(this.btnPayForChipCoin);
-            this.Controls.Add(this.btnAdvanceTime);
+            this.Controls.Add(this.btnAdvanceTimeHour);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.label3);
@@ -532,11 +544,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSpacesByFloor;
         private System.Windows.Forms.Button btnCarLeavesSpace;
-        private System.Windows.Forms.Button btnAdvanceTime;
+        private System.Windows.Forms.Button btnAdvanceTimeHour;
         private System.Windows.Forms.Button btnPayForChipCoin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblSystemTime;
         private System.Windows.Forms.Timer timerSysTime;
+        private System.Windows.Forms.Button btnAdvanceTime10Min;
     }
 }
 

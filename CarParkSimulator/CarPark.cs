@@ -16,6 +16,11 @@ namespace CarParkSimulator
         int[] carParkSpaces = new int[carParkFloors];
         int[,] carParkLayout = new int[carParkFloors, spacesPerFloor];
 
+        private int sysTime;
+        private int sysTimeHours;
+        private int sysTimeMinutes;
+        private string sysTimeString;
+
         private ChipCoinMachine ChipCoinMachine;
         private ChipCoinValidator ChipCoinValidator;
         private Barrier entryBarrier;
@@ -113,30 +118,29 @@ namespace CarParkSimulator
         public int parkCar(int ChipCoinCode)
         {
             bool parked = false;
+            int floor = selectFloor();
             while (parked == false)
             {
-                int floor = selectFloor();
                 if (floor >= 0 && floor < carParkFloors)
                     if (carParkSpaces[floor] > 0)
                     {
                         carParkSpaces[floor] = (carParkSpaces[floor] - 1);
                         for (int i = 0; i < spacesPerFloor; i++)
                         {
-                            while (parked == false)
+                            
+                            if (carParkLayout[floor, i] == 0)
                             {
-                                if (carParkLayout[floor, i] == 0)
-                                {
-                                    carParkLayout[floor, i] = ChipCoinCode;
-                                    parked = true;
-                                    return floor;
-                                }
-                                else
-                                    break;
+                                carParkLayout[floor, i] = ChipCoinCode;
+                                parked = true;
+                                break;
                             }
                         }
                     }
             }
-            return carParkFloors;
+            if (parked == true)
+                return floor;
+            else
+                return carParkFloors;
         }
 
         public int selectFloor()
@@ -182,21 +186,84 @@ namespace CarParkSimulator
                     if (carParkSpaces[floor] < spacesPerFloor)
                     {
                         carParkSpaces[floor] = (carParkSpaces[floor] + 1);
-                        for (int i = 0; i < spacesPerFloor; i++)
+                        while (parked == true)
                         {
-                            while (parked == true)
+                            for (int i = 0; i < spacesPerFloor; i++)
                             {
                                 if (carParkLayout[floor, i] == ChipCoinCode)
                                 {
                                     carParkLayout[floor, i] = 0;
                                     parked = false;
                                 }
-                                else
-                                    break;
                             }
                         }
                     }
             }
+        }
+
+        public string setSystemTime()
+        {
+            sysTimeHours = Convert.ToInt32((DateTime.Now).ToString("HH"));
+            sysTimeMinutes = Convert.ToInt32((DateTime.Now).ToString("mm"));
+            sysTime = (sysTimeHours * 100) + sysTimeMinutes;
+            sysTimeString = String.Format("{0,00}:{1,00}", sysTimeHours, sysTimeMinutes);
+            return sysTimeString;
+        }
+
+        public string advanceSystemTimeHour()
+        {
+            sysTimeHours++;
+            if (sysTimeHours / 24 == 1)
+                sysTimeHours = 0;
+
+            sysTime = (sysTimeHours * 100) + sysTimeMinutes;
+            sysTimeString = String.Format("{0:00}:{1:00}", sysTimeHours, sysTimeMinutes);
+            return sysTimeString;
+        }
+
+        public string advanceSystemTimeMinutes()
+        {
+            sysTimeMinutes = sysTimeMinutes + 10;
+            if (sysTimeMinutes / 60 == 1)
+            {
+                sysTimeMinutes = sysTimeMinutes % 60;
+                sysTimeHours++;
+                if (sysTimeHours / 24 == 1)
+                    sysTimeHours = 0;
+            }
+            sysTime = (sysTimeHours * 100) + sysTimeMinutes;
+            sysTimeString = String.Format("{0:00}:{1:00}", sysTimeHours, sysTimeMinutes);
+            return sysTimeString;
+        }
+
+        public string tickSystemTime()
+        {
+            sysTimeMinutes = sysTimeMinutes + 1;
+            if (sysTimeMinutes / 60 == 1)
+            {
+                sysTimeMinutes = sysTimeMinutes % 60;
+                sysTimeHours++;
+                if (sysTimeHours / 24 == 1)
+                    sysTimeHours = 0;
+            }
+            sysTime = (sysTimeHours * 100) + sysTimeMinutes;
+            sysTimeString = String.Format("{0:00}:{1:00}", sysTimeHours, sysTimeMinutes);
+            return sysTimeString;
+        }
+
+        public int getSysMinutes()
+        {
+            return sysTimeMinutes;
+        }
+        
+        public int getSysHours()
+        {
+            return sysTimeHours;
+        }
+
+        public int getSysTime()
+        {
+            return sysTime;
         }
     }
 }

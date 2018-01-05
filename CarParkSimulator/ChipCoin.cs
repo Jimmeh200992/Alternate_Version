@@ -12,7 +12,8 @@ namespace CarParkSimulator
         private int PIN = 99999999;  //default value used, made unreachable by standard entry
         private string regPlate = "";
         private int floor = 0;
-        string timeStamp = "00:00";
+        int timeStamp = 0;
+        private bool parked = false;
 
         //CONSTRUCTORS
         public ChipCoin()
@@ -60,14 +61,36 @@ namespace CarParkSimulator
             this.floor = floor;
         }
 
-        public string GetTimeStamp()
+        public int GetTimeStamp()
         {
             return timeStamp;
         }
 
-        public void SetTimeStamp(string timeStamp)
+        public void SetTimeStamp(int timeStamp)
         {
             this.timeStamp = timeStamp;
+        }
+
+        public int ExtractMinutes()
+        {
+            int coinMinutes = timeStamp % 100;
+            return coinMinutes;
+        }
+
+        public int ExtractHours()
+        {
+            int coinHours = timeStamp / 100;
+            return coinHours;
+        }
+
+        public bool IsParked()
+        {
+            return parked;
+        }
+
+        public void SetParked(bool parked)
+        {
+            this.parked = parked;
         }
     }
 }
