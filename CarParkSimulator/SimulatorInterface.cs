@@ -132,7 +132,7 @@ namespace CarParkSimulator
             //int ChipCoinCode = activeChipCoins.GetChipCoins()[0].GetHashCode();       //Generates the inputted ChipCoin's hashcode.
             string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is a simulation of scanning the ChipCoin code");
 
-            ChipCoinPaid paid = ChipCoinValidator.ChipCoinEntered(Convert.ToInt32(ChipCoinCode));  //Validates and removes the ChipCoin.
+            ChipCoinPaid paid = ChipCoinValidator.ChipCoinEntered(Convert.ToInt32(ChipCoinCode), carPark.getSysHours(), carPark.getSysMinutes());  //Validates and removes the ChipCoin.
                 //ABOVE REMOVES ONLY IF ChipCoin IS PAID
             switch (paid)
             {

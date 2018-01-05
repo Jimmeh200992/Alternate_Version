@@ -45,7 +45,6 @@ namespace CarParkSimulator
                         }
                         else
                         {
-                            getTimeParked(ChipCoin.ExtractHours(), ChipCoin.ExtractMinutes(), sysHours, sysMinutes);
                             MessageBox.Show("You have stayed for " + getTimeParked(ChipCoin.ExtractHours(), ChipCoin.ExtractMinutes(), sysHours, sysMinutes) + " minutes.");
                             MessageBoxManager.OK = "Cash"; MessageBoxManager.Cancel = "Card"; MessageBoxManager.Register();  //Removes that ChipCoin from the list
                             

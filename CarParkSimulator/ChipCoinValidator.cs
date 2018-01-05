@@ -29,7 +29,7 @@ namespace CarParkSimulator
             message = "Please insert your ChipCoin.";
         }
 
-        public ChipCoinPaid ChipCoinEntered(int ChipCoinCode)
+        public ChipCoinPaid ChipCoinEntered(int ChipCoinCode, int sysHours, int sysMinutes)
         {
 
             foreach (ChipCoin ChipCoin in ChipCoins.GetChipCoins())  //loops through all active ChipCoins
@@ -54,6 +54,7 @@ namespace CarParkSimulator
                         }
                         else
                         {
+                            MessageBox.Show("You have stayed for " + getTimeParked(ChipCoin.ExtractHours(), ChipCoin.ExtractMinutes(), sysHours, sysMinutes) + " minutes.");
                             MessageBoxManager.OK = "Present card"; MessageBoxManager.Cancel = "Pay by cash"; MessageBoxManager.Register();
                             if (MessageBox.Show("Please pay by card.", "PayByCard", MessageBoxButtons.OKCancel) == DialogResult.OK)
                             {
@@ -88,6 +89,20 @@ namespace CarParkSimulator
         public string GetMessage()
         {
             return message;
+        }
+
+        public int getTimeParked(int chipCoinHours, int chipCoinMinutes, int sysHours, int sysMinutes)
+        {
+            int hoursStayed = sysHours - chipCoinHours;
+            if (hoursStayed < 0)
+                hoursStayed = 24 - hoursStayed;
+            int minutesStayed = sysMinutes - chipCoinMinutes;
+            hoursStayed = hoursStayed * 60;
+            if (minutesStayed < 0)
+                minutesStayed = hoursStayed + minutesStayed;
+            else
+                minutesStayed = hoursStayed - minutesStayed;
+            return minutesStayed;
         }
     }
 }
