@@ -4,11 +4,11 @@ Reworked version of existing code from ItRaSM
 
 Secure car park to do:
 
-Rename ticket to chipcoin, comment liberally
+Rename ticket to chipcoin, comment liberally - Renamed, will add comments
 
-Validation on PIN entry
+Validation on PIN entry - Lower priority, currently ignores anything outside integer, will suffice for rough prototyping
 
-Timestamps on chip coins
+Timestamps on chip coins - James currently working on this
 
 Emergency services override - Add button, button disables all barrier arrival and ticket buttons.  Message displayed on entrance and exit to announce issue.
 
