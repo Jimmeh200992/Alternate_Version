@@ -53,6 +53,7 @@ namespace CarParkSimulator
 
             /////////////////////////////////////////
 
+            btnEmergencyServices.Visible = true;
             btnCarArrivesAtEntrance.Visible = true;
             btnDriverPressesForChipCoin.Visible = false;
             btnCarEntersCarPark.Visible = false;
@@ -116,6 +117,7 @@ namespace CarParkSimulator
             }
             btnParkCar.Visible = false;
             btnCarLeavesSpace.Visible = true;         //Enables exit button.
+            btnPayForChipCoin.Visible = true;
             UpdateDisplay();
         }
 
@@ -230,6 +232,72 @@ namespace CarParkSimulator
         private void btnAdvanceTime10Min_Click(object sender, EventArgs e)
         {
             lblSystemTime.Text = carPark.advanceSystemTimeMinutes();
+        }
+
+        private void btnEmergencyServices_Click(object sender, EventArgs e)
+        {
+            btnEmergencySituation.Visible = true;
+            btnEmergencyServices.Visible = false;
+            entrySensor.CarDetected();
+            UpdateDisplay();
+            lblChipCoinMachine.Text = "";
+            btnCarArrivesAtEntrance.Visible = false;
+            btnPayForChipCoin.Visible = false;
+            btnDriverPressesForChipCoin.Visible = false;
+            btnCarEntersCarPark.Visible = false;
+            btnParkCar.Visible = false;
+            btnCarLeavesSpace.Visible = false;
+            btnCarArrivesAtExit.Visible = false;
+            btnDriverEntersChipCoin.Visible = false;
+            btnCarExitsCarPark.Visible = false;
+            btnEmergencyServices.Visible = false;  
+        }
+
+        private void btnEmergencySituation_Click(object sender, EventArgs e)
+        {
+            btnReset.Visible = false;
+            btnEmergencySituation.Visible = false;
+            btnEmergencyExitSensor.Visible = true;
+            entrySensor.CarLeftSensor();
+            entryBarrier.Raise();
+            UpdateDisplay();
+            emergencyMessage();
+        }
+
+        private void btnEmergencyExitSensor_Click(object sender, EventArgs e)
+        {
+            btnEmergencyExit.Visible = true;
+            btnEmergencyExitSensor.Visible = false;
+            entryBarrier.Lower();
+            exitSensor.CarDetected();
+            UpdateDisplay();
+            emergencyMessage();
+        }
+
+        private void btnEmergencyExit_Click(object sender, EventArgs e)
+        {
+            btnEmergencyExit.Visible = false;
+            btnEmergencyVehicleLeftCarPark.Visible = true;
+            exitSensor.CarLeftSensor();
+            exitBarrier.Raise();
+            UpdateDisplay();
+            emergencyMessage();
+        }
+
+        private void btnEmergencyVehicleLeftCarPark_Click(object sender, EventArgs e)
+        {
+            btnEmergencyVehicleLeftCarPark.Visible = false;
+            btnReset.Visible = true;
+            exitBarrier.Lower();
+            UpdateDisplay();
+            lblChipCoinMachine.Text = "";
+            lblChipCoinValidator.Text = "";
+        }
+
+        private void emergencyMessage()
+        {
+            lblChipCoinMachine.Text = "Emergency - Please Wait";
+            lblChipCoinValidator.Text = "Emergency - Please Leave Exit Clear";
         }
     }
 }
