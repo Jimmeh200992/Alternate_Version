@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxEntrySim = new System.Windows.Forms.GroupBox();
             this.btnParkCar = new System.Windows.Forms.Button();
             this.lblChipCoinMachine = new System.Windows.Forms.Label();
             this.btnCarEntersCarPark = new System.Windows.Forms.Button();
             this.btnDriverPressesForChipCoin = new System.Windows.Forms.Button();
             this.btnCarArrivesAtEntrance = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBoxExitSim = new System.Windows.Forms.GroupBox();
             this.btnCarLeavesSpace = new System.Windows.Forms.Button();
             this.lblChipCoinValidator = new System.Windows.Forms.Label();
             this.btnCarExitsCarPark = new System.Windows.Forms.Button();
@@ -43,17 +43,17 @@
             this.btnCarArrivesAtExit = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBoxInternalData = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblSpacesByFloor = new System.Windows.Forms.Label();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBoxActiveChipCoins = new System.Windows.Forms.GroupBox();
             this.lstActiveChipCoins = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBoxExitSensors = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblExitBarrier = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.lblExitSensor = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBoxEntrySensors = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.lblEntryBarrier = new System.Windows.Forms.Label();
             this.lblEntrySensor = new System.Windows.Forms.Label();
@@ -73,29 +73,43 @@
             this.btnEmergencyExit = new System.Windows.Forms.Button();
             this.btnEmergencyExitSensor = new System.Windows.Forms.Button();
             this.btnEmergencyVehicleLeftCarPark = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.groupBoxFaultPanel = new System.Windows.Forms.GroupBox();
+            this.btnCoinInvalid = new System.Windows.Forms.Button();
+            this.btnCoinLost = new System.Windows.Forms.Button();
+            this.btnPinFail = new System.Windows.Forms.Button();
+            this.btnPayMachineFaulty = new System.Windows.Forms.Button();
+            this.btnBarrierFault = new System.Windows.Forms.Button();
+            this.btnInvalidCoinFix = new System.Windows.Forms.Button();
+            this.btnLostCoinFix = new System.Windows.Forms.Button();
+            this.btnPinFailFix = new System.Windows.Forms.Button();
+            this.btnPayMachineFaultFix = new System.Windows.Forms.Button();
+            this.btnBarrierFaultFix = new System.Windows.Forms.Button();
+            this.groupBoxEmergency = new System.Windows.Forms.GroupBox();
+            this.groupBoxEntrySim.SuspendLayout();
+            this.groupBoxExitSim.SuspendLayout();
+            this.groupBoxInternalData.SuspendLayout();
+            this.groupBoxActiveChipCoins.SuspendLayout();
+            this.groupBoxExitSensors.SuspendLayout();
+            this.groupBoxEntrySensors.SuspendLayout();
+            this.groupBoxFaultPanel.SuspendLayout();
+            this.groupBoxEmergency.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupBoxEntrySim
             // 
-            this.groupBox1.Controls.Add(this.btnParkCar);
-            this.groupBox1.Controls.Add(this.lblChipCoinMachine);
-            this.groupBox1.Controls.Add(this.btnCarEntersCarPark);
-            this.groupBox1.Controls.Add(this.btnDriverPressesForChipCoin);
-            this.groupBox1.Controls.Add(this.btnCarArrivesAtEntrance);
-            this.groupBox1.Location = new System.Drawing.Point(16, 182);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(267, 368);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Entrance simulator";
+            this.groupBoxEntrySim.Controls.Add(this.btnParkCar);
+            this.groupBoxEntrySim.Controls.Add(this.lblChipCoinMachine);
+            this.groupBoxEntrySim.Controls.Add(this.btnCarEntersCarPark);
+            this.groupBoxEntrySim.Controls.Add(this.btnDriverPressesForChipCoin);
+            this.groupBoxEntrySim.Controls.Add(this.btnCarArrivesAtEntrance);
+            this.groupBoxEntrySim.Location = new System.Drawing.Point(16, 182);
+            this.groupBoxEntrySim.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxEntrySim.Name = "groupBoxEntrySim";
+            this.groupBoxEntrySim.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxEntrySim.Size = new System.Drawing.Size(267, 368);
+            this.groupBoxEntrySim.TabIndex = 1;
+            this.groupBoxEntrySim.TabStop = false;
+            this.groupBoxEntrySim.Text = "Entrance simulator";
             // 
             // btnParkCar
             // 
@@ -157,21 +171,21 @@
             this.btnCarArrivesAtEntrance.Visible = false;
             this.btnCarArrivesAtEntrance.Click += new System.EventHandler(this.CarArrivesAtEntrance);
             // 
-            // groupBox2
+            // groupBoxExitSim
             // 
-            this.groupBox2.Controls.Add(this.btnCarLeavesSpace);
-            this.groupBox2.Controls.Add(this.lblChipCoinValidator);
-            this.groupBox2.Controls.Add(this.btnCarExitsCarPark);
-            this.groupBox2.Controls.Add(this.btnDriverEntersChipCoin);
-            this.groupBox2.Controls.Add(this.btnCarArrivesAtExit);
-            this.groupBox2.Location = new System.Drawing.Point(301, 182);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(267, 368);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Exit simulator";
+            this.groupBoxExitSim.Controls.Add(this.btnCarLeavesSpace);
+            this.groupBoxExitSim.Controls.Add(this.lblChipCoinValidator);
+            this.groupBoxExitSim.Controls.Add(this.btnCarExitsCarPark);
+            this.groupBoxExitSim.Controls.Add(this.btnDriverEntersChipCoin);
+            this.groupBoxExitSim.Controls.Add(this.btnCarArrivesAtExit);
+            this.groupBoxExitSim.Location = new System.Drawing.Point(301, 182);
+            this.groupBoxExitSim.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxExitSim.Name = "groupBoxExitSim";
+            this.groupBoxExitSim.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxExitSim.Size = new System.Drawing.Size(267, 368);
+            this.groupBoxExitSim.TabIndex = 2;
+            this.groupBoxExitSim.TabStop = false;
+            this.groupBoxExitSim.Text = "Exit simulator";
             // 
             // btnCarLeavesSpace
             // 
@@ -255,25 +269,25 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.ResetSystem);
             // 
-            // groupBox3
+            // groupBoxInternalData
             // 
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.lblSpacesByFloor);
-            this.groupBox3.Controls.Add(this.groupBox6);
-            this.groupBox3.Controls.Add(this.groupBox5);
-            this.groupBox3.Controls.Add(this.groupBox4);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.lblSpaces);
-            this.groupBox3.Controls.Add(this.lblFullSign);
-            this.groupBox3.Location = new System.Drawing.Point(587, 182);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(571, 438);
-            this.groupBox3.TabIndex = 3;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Internal data";
+            this.groupBoxInternalData.Controls.Add(this.label1);
+            this.groupBoxInternalData.Controls.Add(this.lblSpacesByFloor);
+            this.groupBoxInternalData.Controls.Add(this.groupBoxActiveChipCoins);
+            this.groupBoxInternalData.Controls.Add(this.groupBoxExitSensors);
+            this.groupBoxInternalData.Controls.Add(this.groupBoxEntrySensors);
+            this.groupBoxInternalData.Controls.Add(this.label9);
+            this.groupBoxInternalData.Controls.Add(this.label8);
+            this.groupBoxInternalData.Controls.Add(this.lblSpaces);
+            this.groupBoxInternalData.Controls.Add(this.lblFullSign);
+            this.groupBoxInternalData.Location = new System.Drawing.Point(587, 182);
+            this.groupBoxInternalData.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxInternalData.Name = "groupBoxInternalData";
+            this.groupBoxInternalData.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxInternalData.Size = new System.Drawing.Size(571, 438);
+            this.groupBoxInternalData.TabIndex = 3;
+            this.groupBoxInternalData.TabStop = false;
+            this.groupBoxInternalData.Text = "Internal data";
             // 
             // label1
             // 
@@ -295,17 +309,17 @@
             this.lblSpacesByFloor.TabIndex = 9;
             this.lblSpacesByFloor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // groupBox6
+            // groupBoxActiveChipCoins
             // 
-            this.groupBox6.Controls.Add(this.lstActiveChipCoins);
-            this.groupBox6.Location = new System.Drawing.Point(228, 25);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Size = new System.Drawing.Size(335, 260);
-            this.groupBox6.TabIndex = 2;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Active ChipCoins";
+            this.groupBoxActiveChipCoins.Controls.Add(this.lstActiveChipCoins);
+            this.groupBoxActiveChipCoins.Location = new System.Drawing.Point(228, 25);
+            this.groupBoxActiveChipCoins.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxActiveChipCoins.Name = "groupBoxActiveChipCoins";
+            this.groupBoxActiveChipCoins.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxActiveChipCoins.Size = new System.Drawing.Size(335, 260);
+            this.groupBoxActiveChipCoins.TabIndex = 2;
+            this.groupBoxActiveChipCoins.TabStop = false;
+            this.groupBoxActiveChipCoins.Text = "Active ChipCoins";
             // 
             // lstActiveChipCoins
             // 
@@ -317,20 +331,20 @@
             this.lstActiveChipCoins.Size = new System.Drawing.Size(319, 233);
             this.lstActiveChipCoins.TabIndex = 1;
             // 
-            // groupBox5
+            // groupBoxExitSensors
             // 
-            this.groupBox5.Controls.Add(this.label6);
-            this.groupBox5.Controls.Add(this.lblExitBarrier);
-            this.groupBox5.Controls.Add(this.label13);
-            this.groupBox5.Controls.Add(this.lblExitSensor);
-            this.groupBox5.Location = new System.Drawing.Point(15, 113);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Size = new System.Drawing.Size(188, 82);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Exit";
+            this.groupBoxExitSensors.Controls.Add(this.label6);
+            this.groupBoxExitSensors.Controls.Add(this.lblExitBarrier);
+            this.groupBoxExitSensors.Controls.Add(this.label13);
+            this.groupBoxExitSensors.Controls.Add(this.lblExitSensor);
+            this.groupBoxExitSensors.Location = new System.Drawing.Point(15, 113);
+            this.groupBoxExitSensors.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxExitSensors.Name = "groupBoxExitSensors";
+            this.groupBoxExitSensors.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxExitSensors.Size = new System.Drawing.Size(188, 82);
+            this.groupBoxExitSensors.TabIndex = 1;
+            this.groupBoxExitSensors.TabStop = false;
+            this.groupBoxExitSensors.Text = "Exit";
             // 
             // label6
             // 
@@ -372,20 +386,20 @@
             this.lblExitSensor.TabIndex = 0;
             this.lblExitSensor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // groupBox4
+            // groupBoxEntrySensors
             // 
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.lblEntryBarrier);
-            this.groupBox4.Controls.Add(this.lblEntrySensor);
-            this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Location = new System.Drawing.Point(15, 23);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(188, 82);
-            this.groupBox4.TabIndex = 1;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Entry";
+            this.groupBoxEntrySensors.Controls.Add(this.label4);
+            this.groupBoxEntrySensors.Controls.Add(this.lblEntryBarrier);
+            this.groupBoxEntrySensors.Controls.Add(this.lblEntrySensor);
+            this.groupBoxEntrySensors.Controls.Add(this.label5);
+            this.groupBoxEntrySensors.Location = new System.Drawing.Point(15, 23);
+            this.groupBoxEntrySensors.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxEntrySensors.Name = "groupBoxEntrySensors";
+            this.groupBoxEntrySensors.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxEntrySensors.Size = new System.Drawing.Size(188, 82);
+            this.groupBoxEntrySensors.TabIndex = 1;
+            this.groupBoxEntrySensors.TabStop = false;
+            this.groupBoxEntrySensors.Text = "Entry";
             // 
             // label4
             // 
@@ -528,19 +542,19 @@
             // 
             // btnEmergencyServices
             // 
-            this.btnEmergencyServices.Location = new System.Drawing.Point(1205, 37);
+            this.btnEmergencyServices.Location = new System.Drawing.Point(7, 22);
             this.btnEmergencyServices.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmergencyServices.Name = "btnEmergencyServices";
             this.btnEmergencyServices.Size = new System.Drawing.Size(193, 66);
             this.btnEmergencyServices.TabIndex = 10;
-            this.btnEmergencyServices.Text = "Emergency Services Only";
+            this.btnEmergencyServices.Text = "Emergency Vehicle At Entrance";
             this.btnEmergencyServices.UseVisualStyleBackColor = true;
             this.btnEmergencyServices.Visible = false;
             this.btnEmergencyServices.Click += new System.EventHandler(this.btnEmergencyServices_Click);
             // 
             // btnEmergencySituation
             // 
-            this.btnEmergencySituation.Location = new System.Drawing.Point(1406, 37);
+            this.btnEmergencySituation.Location = new System.Drawing.Point(208, 22);
             this.btnEmergencySituation.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmergencySituation.Name = "btnEmergencySituation";
             this.btnEmergencySituation.Size = new System.Drawing.Size(193, 66);
@@ -552,7 +566,7 @@
             // 
             // btnEmergencyExit
             // 
-            this.btnEmergencyExit.Location = new System.Drawing.Point(1406, 111);
+            this.btnEmergencyExit.Location = new System.Drawing.Point(208, 96);
             this.btnEmergencyExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmergencyExit.Name = "btnEmergencyExit";
             this.btnEmergencyExit.Size = new System.Drawing.Size(193, 66);
@@ -564,7 +578,7 @@
             // 
             // btnEmergencyExitSensor
             // 
-            this.btnEmergencyExitSensor.Location = new System.Drawing.Point(1205, 111);
+            this.btnEmergencyExitSensor.Location = new System.Drawing.Point(7, 96);
             this.btnEmergencyExitSensor.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmergencyExitSensor.Name = "btnEmergencyExitSensor";
             this.btnEmergencyExitSensor.Size = new System.Drawing.Size(193, 66);
@@ -576,7 +590,7 @@
             // 
             // btnEmergencyVehicleLeftCarPark
             // 
-            this.btnEmergencyVehicleLeftCarPark.Location = new System.Drawing.Point(1205, 185);
+            this.btnEmergencyVehicleLeftCarPark.Location = new System.Drawing.Point(7, 170);
             this.btnEmergencyVehicleLeftCarPark.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmergencyVehicleLeftCarPark.Name = "btnEmergencyVehicleLeftCarPark";
             this.btnEmergencyVehicleLeftCarPark.Size = new System.Drawing.Size(193, 66);
@@ -586,26 +600,147 @@
             this.btnEmergencyVehicleLeftCarPark.Visible = false;
             this.btnEmergencyVehicleLeftCarPark.Click += new System.EventHandler(this.btnEmergencyVehicleLeftCarPark_Click);
             // 
+            // groupBoxFaultPanel
+            // 
+            this.groupBoxFaultPanel.Controls.Add(this.btnBarrierFaultFix);
+            this.groupBoxFaultPanel.Controls.Add(this.btnPayMachineFaultFix);
+            this.groupBoxFaultPanel.Controls.Add(this.btnPinFailFix);
+            this.groupBoxFaultPanel.Controls.Add(this.btnLostCoinFix);
+            this.groupBoxFaultPanel.Controls.Add(this.btnInvalidCoinFix);
+            this.groupBoxFaultPanel.Controls.Add(this.btnBarrierFault);
+            this.groupBoxFaultPanel.Controls.Add(this.btnPayMachineFaulty);
+            this.groupBoxFaultPanel.Controls.Add(this.btnPinFail);
+            this.groupBoxFaultPanel.Controls.Add(this.btnCoinLost);
+            this.groupBoxFaultPanel.Controls.Add(this.btnCoinInvalid);
+            this.groupBoxFaultPanel.Location = new System.Drawing.Point(1184, 317);
+            this.groupBoxFaultPanel.Name = "groupBoxFaultPanel";
+            this.groupBoxFaultPanel.Size = new System.Drawing.Size(409, 303);
+            this.groupBoxFaultPanel.TabIndex = 16;
+            this.groupBoxFaultPanel.TabStop = false;
+            this.groupBoxFaultPanel.Text = "Fault panel";
+            // 
+            // btnCoinInvalid
+            // 
+            this.btnCoinInvalid.Location = new System.Drawing.Point(7, 21);
+            this.btnCoinInvalid.Name = "btnCoinInvalid";
+            this.btnCoinInvalid.Size = new System.Drawing.Size(193, 50);
+            this.btnCoinInvalid.TabIndex = 2;
+            this.btnCoinInvalid.Text = "Coin Invalid";
+            this.btnCoinInvalid.UseVisualStyleBackColor = true;
+            // 
+            // btnCoinLost
+            // 
+            this.btnCoinLost.Location = new System.Drawing.Point(7, 77);
+            this.btnCoinLost.Name = "btnCoinLost";
+            this.btnCoinLost.Size = new System.Drawing.Size(193, 50);
+            this.btnCoinLost.TabIndex = 3;
+            this.btnCoinLost.Text = "Coin Lost";
+            this.btnCoinLost.UseVisualStyleBackColor = true;
+            // 
+            // btnPinFail
+            // 
+            this.btnPinFail.Location = new System.Drawing.Point(7, 133);
+            this.btnPinFail.Name = "btnPinFail";
+            this.btnPinFail.Size = new System.Drawing.Size(193, 50);
+            this.btnPinFail.TabIndex = 4;
+            this.btnPinFail.Text = "Invalid Pin";
+            this.btnPinFail.UseVisualStyleBackColor = true;
+            // 
+            // btnPayMachineFaulty
+            // 
+            this.btnPayMachineFaulty.Location = new System.Drawing.Point(7, 189);
+            this.btnPayMachineFaulty.Name = "btnPayMachineFaulty";
+            this.btnPayMachineFaulty.Size = new System.Drawing.Size(193, 50);
+            this.btnPayMachineFaulty.TabIndex = 5;
+            this.btnPayMachineFaulty.Text = "Pay Machine Faulty";
+            this.btnPayMachineFaulty.UseVisualStyleBackColor = true;
+            // 
+            // btnBarrierFault
+            // 
+            this.btnBarrierFault.Location = new System.Drawing.Point(7, 245);
+            this.btnBarrierFault.Name = "btnBarrierFault";
+            this.btnBarrierFault.Size = new System.Drawing.Size(193, 50);
+            this.btnBarrierFault.TabIndex = 6;
+            this.btnBarrierFault.Text = "Barrier Fault";
+            this.btnBarrierFault.UseVisualStyleBackColor = true;
+            // 
+            // btnInvalidCoinFix
+            // 
+            this.btnInvalidCoinFix.Location = new System.Drawing.Point(206, 21);
+            this.btnInvalidCoinFix.Name = "btnInvalidCoinFix";
+            this.btnInvalidCoinFix.Size = new System.Drawing.Size(193, 50);
+            this.btnInvalidCoinFix.TabIndex = 7;
+            this.btnInvalidCoinFix.Text = "Invalid Coin Resolution";
+            this.btnInvalidCoinFix.UseVisualStyleBackColor = true;
+            // 
+            // btnLostCoinFix
+            // 
+            this.btnLostCoinFix.Location = new System.Drawing.Point(206, 77);
+            this.btnLostCoinFix.Name = "btnLostCoinFix";
+            this.btnLostCoinFix.Size = new System.Drawing.Size(193, 50);
+            this.btnLostCoinFix.TabIndex = 8;
+            this.btnLostCoinFix.Text = "Lost Coin Resolution";
+            this.btnLostCoinFix.UseVisualStyleBackColor = true;
+            // 
+            // btnPinFailFix
+            // 
+            this.btnPinFailFix.Location = new System.Drawing.Point(206, 133);
+            this.btnPinFailFix.Name = "btnPinFailFix";
+            this.btnPinFailFix.Size = new System.Drawing.Size(193, 50);
+            this.btnPinFailFix.TabIndex = 9;
+            this.btnPinFailFix.Text = "Invalid Pin Resolution";
+            this.btnPinFailFix.UseVisualStyleBackColor = true;
+            // 
+            // btnPayMachineFaultFix
+            // 
+            this.btnPayMachineFaultFix.Location = new System.Drawing.Point(206, 189);
+            this.btnPayMachineFaultFix.Name = "btnPayMachineFaultFix";
+            this.btnPayMachineFaultFix.Size = new System.Drawing.Size(193, 50);
+            this.btnPayMachineFaultFix.TabIndex = 10;
+            this.btnPayMachineFaultFix.Text = "Faulty Pay Machine Resolution";
+            this.btnPayMachineFaultFix.UseVisualStyleBackColor = true;
+            // 
+            // btnBarrierFaultFix
+            // 
+            this.btnBarrierFaultFix.Location = new System.Drawing.Point(206, 245);
+            this.btnBarrierFaultFix.Name = "btnBarrierFaultFix";
+            this.btnBarrierFaultFix.Size = new System.Drawing.Size(193, 50);
+            this.btnBarrierFaultFix.TabIndex = 11;
+            this.btnBarrierFaultFix.Text = "Barrier Fault Resolution";
+            this.btnBarrierFaultFix.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxEmergency
+            // 
+            this.groupBoxEmergency.Controls.Add(this.btnEmergencyServices);
+            this.groupBoxEmergency.Controls.Add(this.btnEmergencyVehicleLeftCarPark);
+            this.groupBoxEmergency.Controls.Add(this.btnEmergencySituation);
+            this.groupBoxEmergency.Controls.Add(this.btnEmergencyExit);
+            this.groupBoxEmergency.Controls.Add(this.btnEmergencyExitSensor);
+            this.groupBoxEmergency.Location = new System.Drawing.Point(1184, 9);
+            this.groupBoxEmergency.Name = "groupBoxEmergency";
+            this.groupBoxEmergency.Size = new System.Drawing.Size(409, 241);
+            this.groupBoxEmergency.TabIndex = 15;
+            this.groupBoxEmergency.TabStop = false;
+            this.groupBoxEmergency.Text = "Emergency simulator";
+            this.groupBoxEmergency.Visible = false;
+            // 
             // SimulatorInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1612, 655);
-            this.Controls.Add(this.btnEmergencyVehicleLeftCarPark);
-            this.Controls.Add(this.btnEmergencyExitSensor);
-            this.Controls.Add(this.btnEmergencyExit);
-            this.Controls.Add(this.btnEmergencySituation);
-            this.Controls.Add(this.btnEmergencyServices);
+            this.ClientSize = new System.Drawing.Size(1605, 655);
+            this.Controls.Add(this.groupBoxFaultPanel);
+            this.Controls.Add(this.groupBoxEmergency);
             this.Controls.Add(this.btnAdvanceTime10Min);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblSystemTime);
             this.Controls.Add(this.btnPayForChipCoin);
             this.Controls.Add(this.btnAdvanceTimeHour);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBoxInternalData);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxExitSim);
+            this.Controls.Add(this.groupBoxEntrySim);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -614,12 +749,14 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Car Park Simulator";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
+            this.groupBoxEntrySim.ResumeLayout(false);
+            this.groupBoxExitSim.ResumeLayout(false);
+            this.groupBoxInternalData.ResumeLayout(false);
+            this.groupBoxActiveChipCoins.ResumeLayout(false);
+            this.groupBoxExitSensors.ResumeLayout(false);
+            this.groupBoxEntrySensors.ResumeLayout(false);
+            this.groupBoxFaultPanel.ResumeLayout(false);
+            this.groupBoxEmergency.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -627,19 +764,19 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxEntrySim;
         private System.Windows.Forms.Label lblChipCoinMachine;
         private System.Windows.Forms.Button btnCarEntersCarPark;
         private System.Windows.Forms.Button btnDriverPressesForChipCoin;
         private System.Windows.Forms.Button btnCarArrivesAtEntrance;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxExitSim;
         private System.Windows.Forms.Label lblChipCoinValidator;
         private System.Windows.Forms.Button btnCarExitsCarPark;
         private System.Windows.Forms.Button btnDriverEntersChipCoin;
         private System.Windows.Forms.Button btnCarArrivesAtExit;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBoxInternalData;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
@@ -648,13 +785,13 @@
         private System.Windows.Forms.Label lblFullSign;
         private System.Windows.Forms.Label lblExitSensor;
         private System.Windows.Forms.Label lblSpaces;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBoxExitSensors;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblEntryBarrier;
         private System.Windows.Forms.Label lblExitBarrier;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBoxEntrySensors;
+        private System.Windows.Forms.GroupBox groupBoxActiveChipCoins;
         private System.Windows.Forms.Label lstActiveChipCoins;
         private System.Windows.Forms.Button btnParkCar;
         private System.Windows.Forms.Label label1;
@@ -671,6 +808,18 @@
         private System.Windows.Forms.Button btnEmergencyExit;
         private System.Windows.Forms.Button btnEmergencyExitSensor;
         private System.Windows.Forms.Button btnEmergencyVehicleLeftCarPark;
+        private System.Windows.Forms.GroupBox groupBoxFaultPanel;
+        private System.Windows.Forms.Button btnBarrierFaultFix;
+        private System.Windows.Forms.Button btnPayMachineFaultFix;
+        private System.Windows.Forms.Button btnPinFailFix;
+        private System.Windows.Forms.Button btnLostCoinFix;
+        private System.Windows.Forms.Button btnInvalidCoinFix;
+        private System.Windows.Forms.Button btnBarrierFault;
+        private System.Windows.Forms.Button btnPayMachineFaulty;
+        private System.Windows.Forms.Button btnPinFail;
+        private System.Windows.Forms.Button btnCoinLost;
+        private System.Windows.Forms.Button btnCoinInvalid;
+        private System.Windows.Forms.GroupBox groupBoxEmergency;
     }
 }
 

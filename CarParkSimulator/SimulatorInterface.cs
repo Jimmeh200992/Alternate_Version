@@ -53,6 +53,7 @@ namespace CarParkSimulator
 
             /////////////////////////////////////////
 
+            groupBoxEmergency.Visible = true;
             btnEmergencyServices.Visible = true;
             btnCarArrivesAtEntrance.Visible = true;
             btnDriverPressesForChipCoin.Visible = false;
