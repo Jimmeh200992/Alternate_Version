@@ -161,7 +161,7 @@ namespace CarParkSimulator
             btnCarExitsCarPark.Visible = false;         //Disables button clicked.
             if (carPark.IsEmpty() == false)             //Only enables exit button if carpark is not empty
             {
-                btnCarArrivesAtExit.Visible = true;
+                btnCarLeavesSpace.Visible = true;
             }
             if (carPark.IsFull() == false)              //Only enables entry button if carpark is not full.
             {
@@ -182,10 +182,10 @@ namespace CarParkSimulator
             lblSpaces.Text = Convert.ToString(carPark.getCurrentSpaces());
             lblSpacesByFloor.Text = carPark.getAllSpaces();
 
-            string ChipCoinList = "";
+            string ChipCoinList = "Code - Paid - Floor - Plate - PIN - Time - Lost - Fault\n";
             foreach (ChipCoin ChipCoin in activeChipCoins.GetChipCoins())
             {
-                ChipCoinList = ChipCoinList + "#" + Convert.ToString(ChipCoin.GetHashCode()) + ": " + Convert.ToString(ChipCoin.IsPaid()) + ": " + Convert.ToString(ChipCoin.GetCurrentFloor()) + ": " + ChipCoin.GetRegPlate() + ": " + ChipCoin.GetPIN() + ": " + ChipCoin.GetTimeStamp() + "\n";
+                ChipCoinList = ChipCoinList + "#" + Convert.ToString(ChipCoin.GetHashCode()) + " - " + Convert.ToString(ChipCoin.IsPaid()) + " - " + Convert.ToString(ChipCoin.GetCurrentFloor()) + " - " + ChipCoin.GetRegPlate() + " - " + ChipCoin.GetPIN() + " - " + ChipCoin.GetTimeStamp() + " - " + ChipCoin.IsLost() + " - " + ChipCoin.IsFaulty() + "\n";
             }
             lstActiveChipCoins.Text = ChipCoinList;
         }
@@ -289,6 +289,14 @@ namespace CarParkSimulator
         {
             btnEmergencyVehicleLeftCarPark.Visible = false;
             btnReset.Visible = true;
+            if (carPark.IsEmpty() == false)             //Only enables exit button if carpark is not empty
+            {
+                btnCarLeavesSpace.Visible = true;
+            }
+            if (carPark.IsFull() == false)              //Only enables entry button if carpark is not full.
+            {
+                btnCarArrivesAtEntrance.Visible = true;
+            }
             exitBarrier.Lower();
             UpdateDisplay();
             lblChipCoinMachine.Text = "";
@@ -297,8 +305,63 @@ namespace CarParkSimulator
 
         private void emergencyMessage()
         {
-            lblChipCoinMachine.Text = "Emergency - Please Wait";
+            lblChipCoinMachine.Text = "Emergency - Please Leave Entrance Clear";
             lblChipCoinValidator.Text = "Emergency - Please Leave Exit Clear";
+        }
+
+        private void btnCoinLost_Click(object sender, EventArgs e)
+        {
+            string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is to simulate losing a chipcoin");
+            activeChipCoins.SetChipCoinLost(Convert.ToInt32(ChipCoinCode));
+            UpdateDisplay();
+        }
+
+        private void btnLostCoinFix_Click(object sender, EventArgs e)
+        {
+            string RegPlate = Microsoft.VisualBasic.Interaction.InputBox("Enter your registration plate");
+            string PIN = Microsoft.VisualBasic.Interaction.InputBox("Enter your PIN");
+            activeChipCoins.SetChipCoinFound(RegPlate, Convert.ToInt32(PIN));
+            UpdateDisplay();
+        }
+
+        private void btnCoinInvalid_Click(object sender, EventArgs e)
+        {
+            string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is to simulate losing a chipcoin");
+            activeChipCoins.SetChipCoinFaulty(Convert.ToInt32(ChipCoinCode));
+            UpdateDisplay();
+        }
+
+        private void btnInvalidCoinFix_Click(object sender, EventArgs e)
+        {
+            string RegPlate = Microsoft.VisualBasic.Interaction.InputBox("Enter your registration plate");
+            string PIN = Microsoft.VisualBasic.Interaction.InputBox("Enter your PIN");
+            activeChipCoins.SetChipCoinFixed(RegPlate, Convert.ToInt32(PIN));
+            UpdateDisplay();
+        }
+
+        private void btnPinFail_Click(object sender, EventArgs e)
+        {
+            string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is to simulate losing a chipcoin");
+            activeChipCoins.BlankChipCoinPIN(Convert.ToInt32(ChipCoinCode));
+            UpdateDisplay();
+        }
+
+        private void btnPinFailFix_Click(object sender, EventArgs e)
+        {
+            string ChipCoinCode = Microsoft.VisualBasic.Interaction.InputBox("Enter your ChipCoin HASH:  (This is to simulate losing a chipcoin");
+            string RegPlate = Microsoft.VisualBasic.Interaction.InputBox("Enter your registration plate");
+            activeChipCoins.RestoreChipCoinPIN(Convert.ToInt32(ChipCoinCode), RegPlate);
+            UpdateDisplay();
+        }
+
+        private void btnPayMachineFaulty_Click(object sender, EventArgs e)
+        {
+            payMachine.setFaulty();
+        }
+
+        private void btnPayMachineFaultFix_Click(object sender, EventArgs e)
+        {
+            payMachine.setResolved();
         }
     }
 }

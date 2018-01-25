@@ -13,11 +13,13 @@ namespace CarParkSimulator
         //ATTRIBUTES
         private ActiveChipCoins ChipCoins;
         private CarPark carPark;
+        private bool faulty;
 
         //CONSTRUCTOR
         public PayMachine(ActiveChipCoins ChipCoins)
         {
             this.ChipCoins = ChipCoins;
+            faulty = false;
         }
 
         public void AssignCarPark(CarPark carPark)  //Machine constructed after CarPark, thus needs an extra function.
@@ -28,37 +30,42 @@ namespace CarParkSimulator
         //OPERATIONS
         public void PayForChipCoin(int ChipCoinCode, int sysHours, int sysMinutes)
         {
-            if (ChipCoins.GetChipCoins().Count() > 0)  //only valid when there are ChipCoins in the system
+            if (faulty == false)
             {
-                //Checks every active ChipCoin
-                foreach (ChipCoin ChipCoin in ChipCoins.GetChipCoins())  //checks against active ChipCoins
+                if (ChipCoins.GetChipCoins().Count() > 0)  //only valid when there are ChipCoins in the system
                 {
-                    //Checks if the Hashcodes match.
-                    if (ChipCoinCode == ChipCoin.GetHashCode())  //compares hashcode
+                    //Checks every active ChipCoin
+                    foreach (ChipCoin ChipCoin in ChipCoins.GetChipCoins())  //checks against active ChipCoins
                     {
-                        string PINEntry = Microsoft.VisualBasic.Interaction.InputBox("Please enter your secure parking PIN");
-                        int.TryParse(PINEntry, out int PIN);  //validates PIN entry as numeric
-                        if (ChipCoin.GetPIN() != PIN) //checks against registered PIN
+                        //Checks if the Hashcodes match.
+                        if (ChipCoinCode == ChipCoin.GetHashCode())  //compares hashcode
                         {
-                            MessageBox.Show("Invalid PIN, please reinsert coin");
-                            break;  //breaks operation if PIN invalid
-                        }
-                        else
-                        {
-                            MessageBox.Show("You have stayed for " + getTimeParked(ChipCoin.ExtractHours(), ChipCoin.ExtractMinutes(), sysHours, sysMinutes) + " minutes.");
-                            MessageBoxManager.OK = "Cash"; MessageBoxManager.Cancel = "Card"; MessageBoxManager.Register();  //Removes that ChipCoin from the list
-                            
-                            if (MessageBox.Show("Please select payment method. \n\nCard payments will be processed at the barrier.", "Payment type", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                            string PINEntry = Microsoft.VisualBasic.Interaction.InputBox("Please enter your secure parking PIN");
+                            int.TryParse(PINEntry, out int PIN);  //validates PIN entry as numeric
+                            if (ChipCoin.GetPIN() != PIN) //checks against registered PIN
                             {
-                                ChipCoin.SetPaid(true);
-
+                                MessageBox.Show("Invalid PIN, please reinsert coin");
+                                break;  //breaks operation if PIN invalid
                             }
-                            MessageBoxManager.Unregister();
-                            break;  //ask to select a payment, if cash is pressed, set paid to true, breaks loop
+                            else
+                            {
+                                MessageBox.Show("You have stayed for " + getTimeParked(ChipCoin.ExtractHours(), ChipCoin.ExtractMinutes(), sysHours, sysMinutes) + " minutes.");
+                                MessageBoxManager.OK = "Cash"; MessageBoxManager.Cancel = "Card"; MessageBoxManager.Register();  //Removes that ChipCoin from the list
+
+                                if (MessageBox.Show("Please select payment method. \n\nCard payments will be processed at the barrier.", "Payment type", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                                {
+                                    ChipCoin.SetPaid(true);
+
+                                }
+                                MessageBoxManager.Unregister();
+                                break;  //ask to select a payment, if cash is pressed, set paid to true, breaks loop
+                            }
                         }
                     }
                 }
             }
+            else
+                MessageBox.Show("Machine faulty!  A technician is working to resolve the issue.");
         }
         public int getTimeParked(int chipCoinHours, int chipCoinMinutes, int sysHours, int sysMinutes)
         {
@@ -72,6 +79,16 @@ namespace CarParkSimulator
             else
                 minutesStayed = hoursStayed - minutesStayed;
             return minutesStayed;
+        }
+
+        public void setFaulty()
+        {
+            faulty = true;
+        }
+
+        public void setResolved()
+        {
+            faulty = false;
         }
     }
 }

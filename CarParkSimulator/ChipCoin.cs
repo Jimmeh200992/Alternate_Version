@@ -8,7 +8,7 @@ namespace CarParkSimulator
     class ChipCoin
     {
         //ATTRIBUTES
-        private bool paid;
+        private bool paid, lost, faulty;
         private int PIN = 99999999;  //default value used, made unreachable by standard entry
         private string regPlate = "";
         private int floor = 0;
@@ -19,6 +19,8 @@ namespace CarParkSimulator
         public ChipCoin()
         {
             paid = false;
+            lost = false;
+            faulty = false;
         }
         //FUNCTIONS
         public bool IsPaid()
@@ -91,6 +93,23 @@ namespace CarParkSimulator
         public void SetParked(bool parked)
         {
             this.parked = parked;
+        }
+
+        public bool IsLost()
+        {
+            return lost;
+        }
+        public void SetLost(bool lost)
+        {
+            this.lost = lost;
+        }
+        public bool IsFaulty()
+        {
+            return faulty;
+        }
+        public void SetFaulty(bool faulty)
+        {
+            this.faulty = faulty;
         }
     }
 }

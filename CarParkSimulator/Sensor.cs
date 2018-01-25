@@ -10,6 +10,7 @@ namespace CarParkSimulator
         //ATTRIBUTES
         protected bool CarOnSensor;
         protected CarPark carPark;
+        private bool faulty;
 
         // CONSTRUCTORS
         public Sensor()

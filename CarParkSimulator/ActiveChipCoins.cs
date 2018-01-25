@@ -74,5 +74,71 @@ namespace CarParkSimulator
                     ChipCoin.SetTimeStamp(sysTime);
             }
         }
+
+        public void SetChipCoinLost(int ChipCoinCode)
+        {
+            foreach (ChipCoin ChipCoin in ChipCoins)
+            {
+                if (ChipCoin.GetHashCode() == ChipCoinCode)
+                {
+                    ChipCoin.SetLost(true);
+                }
+            }
+        }
+        public void SetChipCoinFound(string RegPlate, int PIN)
+        {
+            foreach (ChipCoin ChipCoin in ChipCoins)
+            {
+                if (ChipCoin.GetRegPlate() == RegPlate)
+                    if (ChipCoin.GetPIN() == PIN)
+                        {
+                            ChipCoin.SetLost(false);
+                        }
+            }
+        }
+
+        public void SetChipCoinFaulty(int ChipCoinCode)
+        {
+            foreach (ChipCoin ChipCoin in ChipCoins)
+            {
+                if (ChipCoin.GetHashCode() == ChipCoinCode)
+                {
+                    ChipCoin.SetFaulty(true);
+                }
+            }
+        }
+        public void SetChipCoinFixed(string RegPlate, int PIN)
+        {
+            foreach (ChipCoin ChipCoin in ChipCoins)
+            {
+                if (ChipCoin.GetRegPlate() == RegPlate)
+                    if (ChipCoin.GetPIN() == PIN)
+                    {
+                        ChipCoin.SetFaulty(false);
+                    }
+            }
+        }
+
+        public void BlankChipCoinPIN(int ChipCoinCode)
+        {
+            foreach (ChipCoin ChipCoin in ChipCoins)
+            {
+                if (ChipCoin.GetHashCode() == ChipCoinCode)
+                {
+                    ChipCoin.SetPIN(11111111);
+                }
+            }
+        }
+        public void RestoreChipCoinPIN(int ChipCoinCode, string RegPlate)
+        {
+            foreach (ChipCoin ChipCoin in ChipCoins)
+            {
+                if (ChipCoin.GetHashCode() == ChipCoinCode)
+                    if (ChipCoin.GetRegPlate() == RegPlate)
+                    {
+                        ChipCoin.SetPIN(Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("Enter a new PIN")));
+                    }
+            }
+        }
     }
 }
